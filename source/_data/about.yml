@@ -1,0 +1,134 @@
+- name: 张博贤 # 对应截图中的名字
+  # 对应截图中的副标题，这里使用了您 @md.mdc 中的角色信息
+  subtitle: 数据/AI 产品经理、算法工程师、数据分析师、独立开发者
+  # 对应截图个人卡片里的描述
+  description: 热爱数据与AI，致力于将技术转化为产品价值
+  # 您的头像图片链接，请替换成您自己的
+  avatarImg: https://bu.dusays.com/2023/04/27/64496e511b09c.jpg # 请替换
+  # 对应截图 "Hello there!" 卡片的内容，这里使用了您 @md.mdc 的座右铭
+  helloAbout: 生活明朗，万物可爱✨
+  # 对应截图头像周围的标签，您可以自定义
+  avatarSkills:
+    left:
+      - "数码科技爱好者" # 示例
+      - "分享与热心帮助" # 示例
+      - "智能家居小能手" # 示例
+    right:
+      - "专修交互与设计" # 示例
+      - "脚踏实地行动派" # 示例
+      - "团队小组发动机" # 示例
+      - "壮汉人狠话不多" # 示例
+
+  # 对应截图右侧的"追求"卡片
+  aboutsiteTips:
+    tips: 追求
+    title1: 源于
+    title2: 热爱而去
+    word:
+      - 感受
+      - 学习
+      - 生活
+      - 程序
+      - 体验
+
+  # 对应截图的"技能"卡片
+  skillsTips:
+    tips: 技能
+    title: 开启创造力
+    # 注意：技能图标通常需要在 source/_data/creativity.yml 中配置，或者在此处提供包含 name, color, icon 的列表
+    # 这里暂时为空，需要配合 creativity.yml 或进一步配置
+
+  # 对应截图的"生涯"卡片
+  careers:
+    tips: 生涯
+    title: 无限进步
+    list: # 从 @md.mdc 获取
+      - desc: 2015年毕业
+        color: "#357ef5" # 示例颜色
+      - desc: 2015-2017：数据分析师
+        color: "#8510fb" # 示例颜色
+      - desc: 2017-2019：算法工程师
+        color: "#35c5f5" # 示例颜色
+      - desc: 2019-至今：数据/AI产品
+        color: "#f2be45" # 示例颜色
+    # 截图中的时间轴样式可能需要特定主题支持或自定义
+
+  # 对应截图的地图卡片
+  map:
+    title: 我现在住在
+    StrengthenTitle: 中国 # @md.mdc 未提供具体城市，使用占位符
+    # 请替换为您的地图背景图片
+    background: https://bu.dusays.com/2022/12/16/639bcf33be840.png # 示例图片
+    backgroundDark: https://bu.dusays.com/2022/12/16/639bcf33c03c6.png # 示例图片
+
+  # 对应截图的个人信息卡片
+  selfInfo:
+    selfInfoTips1: 生于
+    selfInfoContentYear: 199X # @md.mdc 未提供，使用占位符
+    selfInfoTips2: 学校/专业 # 截图显示了学校专业，@md.mdc 未提供
+    selfInfoContent2: XX大学 XX专业 # 请替换
+    selfInfoTips3: 现在职业
+    selfInfoContent3: 数据/AI产品经理 # 从 @md.mdc 获取
+
+  # 对应截图的性格卡片
+  personalities:
+    author_name: ISTP # 从 @md.mdc 获取
+    personality_type: 鉴赏家型人格 # 从 @md.mdc 获取
+    # 请替换为您自己的照片
+    photo_url: https://tuchong.com/123456/ # 示例，请替换为您的个人照片链接
+    # 请替换为您性格类型的代表图片
+    personality_img: https://static.16personalities.com/images/types/results/screenshots/istp.png # 示例图片
+    name_url: https://www.16personalities.com/ch/istp-人格 # ISTP介绍链接
+    personality_type_color: "#8e44ad" # 示例颜色
+
+  # 对应截图的座右铭卡片
+  maxim:
+    maxim_tips: 座右铭
+    maxim_top: 生活明朗， # 从 @md.mdc 获取
+    maxim_bottom: 万物可爱。 # 从 @md.mdc 获取
+
+  # 对应截图的"特长"卡片
+  buff:
+    buff_tips: 特长
+    buff_top: 脑回路新奇的 # 示例文字
+    buff_bottom: 产品人 # 示例文字
+    # 粉色背景和文字样式可能需要自定义CSS
+
+  # 对应截图的游戏卡片
+  game:
+    game_tips: 爱好游戏
+    game_title: 英雄联盟 # 从 @md.mdc 获取
+    game_uid: 常玩的位置是辅助位，英雄是婕拉、锤石、日女、卡尔玛。 # 从 @md.mdc 获取
+    # 请替换为游戏相关的背景图
+    game_bg: https://example.com/lol_background.jpg # 示例图片
+
+  # 对应截图的追番卡片
+  comic:
+    comic_tips: 爱好番剧
+    comic_title: 追番
+    comic_list: # 从 @md.mdc 获取
+      - name: 不良人
+        # 请替换为番剧封面图
+        cover: https://example.com/blr_cover.jpg # 示例图片
+        # 请替换为番剧介绍或播放链接
+        href: https://www.bilibili.com/bangumi/media/md28236401 # 示例链接
+
+  # 对应截图的音乐卡片
+  music:
+    music_tips: 音乐偏好
+    music_title: 民谣、华语流行 # 从 @md.mdc 获取
+    music_link: /music/ # 默认音乐页面链接
+    # 请替换为音乐相关的背景图
+    music_bg: https://bu.dusays.com/2023/08/13/64d8c2e32afbe.jpg # 示例图片
+
+  # 对应截图的"关注偏好"卡片
+  like:
+    like_tips: 关注偏好
+    like_title: 数据科技 # 示例文字
+    like_bottom: 产品设计与数据分析 # 示例文字
+    # 请替换为相关的背景图
+    like_bg: https://bu.dusays.com/2022/12/06/638f5f05ce1f7.jpg # 示例图片
+
+  # 注意：截图中类似"心路历程"的大段文字，以及"给大家推荐一部番"的部分，
+  # 最好放在 source/about/index.md 文件中，利用 Markdown 的自由格式书写。
+  # Anzhiyu主题的 about.pug 模板通常会包含 page.content 来显示这部分内容。 

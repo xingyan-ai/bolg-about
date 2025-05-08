@@ -1,0 +1,49 @@
+# source/_data/creativity.yml
+# 定义 about 页面的技能图标和颜色
+- item_name: 技能列表 # 这个名称通常不直接显示，只是分组用
+  creativity_list:
+    - name: Python
+      color: "#3776ab" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg # 示例图标
+    - name: SQL
+      color: "#f29111" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg # 示例图标 (devicon 没有通用 SQL 图标)
+    - name: Spark
+      color: "#e25a1c" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original-wordmark.svg # 示例图标
+    - name: TensorFlow
+      color: "#ff6f00" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg # 示例图标
+    - name: Sketch
+      color: "#f7b500" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sketch/sketch-original.svg # 示例图标
+    - name: Axure
+      color: "#0099cc" # 示例颜色
+      icon: "/images/icons/axure_icon.png" # 示例 - 假设您有本地图标
+    - name: Figma
+      color: "#0acf83" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg # 示例图标
+    - name: Excel
+      color: "#217346" # 示例颜色
+      icon: "/images/icons/excel_icon.png" # 示例 - 假设您有本地图标
+    - name: Tableau
+      color: "#e97627" # 示例颜色
+      icon: "/images/icons/tableau_icon.png" # 示例 - 假设您有本地图标
+    - name: Notion
+      color: "#000000" # 示例颜色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg # 示例图标
+    - name: PPT
+      color: "#d24726" # 示例颜色
+      icon: "/images/icons/ppt_icon.png" # 示例 - 假设您有本地图标
+    - name: Xmind
+      color: "#ff8400" # 示例颜色
+      icon: "/images/icons/xmind_icon.png" # 示例 - 假设您有本地图标
+    # - name: Excalidraw # 您可以继续添加其他技能
+    #   color: "#6a7a8c"
+    #   icon: "/images/icons/excalidraw_icon.png"
+    # - name: Omnigraffle
+    #   color: "#1a9bdf"
+    #   icon: "/images/icons/omnigraffle_icon.png"
+    # - name: Omniplan
+    #   color: "#616161"
+    #   icon: "/images/icons/omniplan_icon.png" 
