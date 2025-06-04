@@ -2,42 +2,42 @@
 # 定义 about 页面的技能图标和颜色
 - item_name: 技能列表 # 这个名称通常不直接显示，只是分组用
   creativity_list:
-    - name: Python
-      color: "#3776ab" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg # 示例图标
-    - name: SQL
-      color: "#f29111" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg # 示例图标 (devicon 没有通用 SQL 图标)
-    - name: Spark
-      color: "#e25a1c" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original-wordmark.svg # 示例图标
-    - name: TensorFlow
-      color: "#ff6f00" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg # 示例图标
     - name: Sketch
-      color: "#f7b500" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sketch/sketch-original.svg # 示例图标
-    - name: Axure
-      color: "#0099cc" # 示例颜色
-      icon: "/images/icons/axure_icon.png" # 示例 - 假设您有本地图标
+      color: "#F7B500" # Sketch品牌色 - 金黄色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sketch/sketch-original.svg
     - name: Figma
-      color: "#0acf83" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg # 示例图标
-    - name: Excel
-      color: "#217346" # 示例颜色
-      icon: "/images/icons/excel_icon.png" # 示例 - 假设您有本地图标
+      color: "#F24E1E" # Figma品牌色 - 橙红色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg
+    - name: Axure RP
+      color: "#1E90FF" # 蓝色调，与产品原型工具匹配
+      icon: "https://i.ibb.co/C3pGcDx4/AxureRP.png"
     - name: Tableau
-      color: "#e97627" # 示例颜色
-      icon: "/images/icons/tableau_icon.png" # 示例 - 假设您有本地图标
+      color: "#E97627" # Tableau品牌色 - 橙色
+      icon: "https://i.ibb.co/0jLVYXCP/icon-tableau.png"
+    - name: PowerPoint
+      color: "#D24726" # PPT品牌色 - 红橙色
+      icon: "https://i.ibb.co/8LmDVR5F/PPT.png"
+    - name: Python
+      color: "#3776AB" # Python品牌色 - 蓝色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg
+    - name: Excel
+      color: "#217346" # Excel品牌色 - 绿色
+      icon: "https://i.ibb.co/kL6G9N8/excel.png"
     - name: Notion
-      color: "#000000" # 示例颜色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg # 示例图标
-    - name: PPT
-      color: "#d24726" # 示例颜色
-      icon: "/images/icons/ppt_icon.png" # 示例 - 假设您有本地图标
-    - name: Xmind
-      color: "#ff8400" # 示例颜色
-      icon: "/images/icons/xmind_icon.png" # 示例 - 假设您有本地图标
+      color: "#37352F" # Notion品牌色 - 深灰色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg
+    - name: SQL
+      color: "#336791" # PostgreSQL蓝色，代表数据库
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg
+    - name: XMind
+      color: "#FF6B35" # 橙红色调，与思维导图工具匹配
+      icon: "https://i.ibb.co/M5sF4gkC/XMind.png"
+    - name: Spark
+      color: "#E25A1C" # Apache Spark品牌色 - 橙色
+      icon: https://i.ibb.co/vvVwK56b/spark.png
+    - name: TensorFlow
+      color: "#FF6F00" # TensorFlow品牌色 - 橙色
+      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg
     # - name: Excalidraw # 您可以继续添加其他技能
     #   color: "#6a7a8c"
     #   icon: "/images/icons/excalidraw_icon.png"

@@ -1,6 +1,5 @@
 - name: 张博贤 # 对应截图中的名字
   # 对应截图中的副标题，这里使用了您 @md.mdc 中的角色信息
-  subtitle: 数据/AI 产品经理、算法工程师、数据分析师、独立开发者
   # 对应截图个人卡片里的描述
   description: 热爱数据与AI，致力于将技术转化为产品价值
   # 您的头像图片链接，请替换成您自己的
@@ -10,14 +9,15 @@
   # 对应截图头像周围的标签，您可以自定义
   avatarSkills:
     left:
-      - "数码科技爱好者" # 示例
-      - "分享与热心帮助" # 示例
-      - "智能家居小能手" # 示例
+      - "🤖️ 数码科技爱好者"
+      - "🔍 分享与热心帮助"
+      - "🏠 智能家居小能手"
+      - "🔨 设计开发一条龙"
     right:
-      - "专修交互与设计" # 示例
-      - "脚踏实地行动派" # 示例
-      - "团队小组发动机" # 示例
-      - "壮汉人狠话不多" # 示例
+      - "专修产品与设计 🤝"
+      - "脚踏实地行动派 🏃"
+      - "团队小组发动机 💪"
+      - "壮汉人狠话不多 💢"
 
   # 对应截图右侧的"追求"卡片
   aboutsiteTips:
@@ -25,10 +25,9 @@
     title1: 源于
     title2: 热爱而去
     word:
-      - 感受
-      - 学习
+      - 产品
+      - 设计
       - 生活
-      - 程序
       - 体验
 
   # 对应截图的"技能"卡片
@@ -64,34 +63,34 @@
   # 对应截图的个人信息卡片
   selfInfo:
     selfInfoTips1: 生于
-    selfInfoContentYear: 199X # @md.mdc 未提供，使用占位符
-    selfInfoTips2: 学校/专业 # 截图显示了学校专业，@md.mdc 未提供
-    selfInfoContent2: XX大学 XX专业 # 请替换
+    selfInfoContentYear: 1993 # @md.mdc 未提供，使用占位符
+    selfInfoTips2: 学校 # 截图显示了学校专业，@md.mdc 未提供
+    selfInfoContent2: 中国石油大学 # 请替换
     selfInfoTips3: 现在职业
     selfInfoContent3: 数据/AI产品经理 # 从 @md.mdc 获取
 
   # 对应截图的性格卡片
   personalities:
-    author_name: ISTP # 从 @md.mdc 获取
-    personality_type: 鉴赏家型人格 # 从 @md.mdc 获取
+    author_name: INTJ-A # 更正为架构师型人格
+    personality_type: 架构师型人格 # 更正类型名称
     # 请替换为您自己的照片
     photo_url: https://tuchong.com/123456/ # 示例，请替换为您的个人照片链接
-    # 请替换为您性格类型的代表图片
-    personality_img: https://static.16personalities.com/images/types/results/screenshots/istp.png # 示例图片
-    name_url: https://www.16personalities.com/ch/istp-人格 # ISTP介绍链接
+    # 使用本地下载的性格类型图片
+    personality_img: /img/personality/elon_musk.svg # 本地图片路径
+    name_url: https://www.16personalities.com/ch/intj-人格 # INTJ介绍链接
     personality_type_color: "#8e44ad" # 示例颜色
 
   # 对应截图的座右铭卡片
   maxim:
     maxim_tips: 座右铭
-    maxim_top: 生活明朗， # 从 @md.mdc 获取
-    maxim_bottom: 万物可爱。 # 从 @md.mdc 获取
+    maxim_top: Stay Hungry, # 从 @md.mdc 获取
+    maxim_bottom: Stay Foolish～ # 从 @md.mdc 获取
 
   # 对应截图的"特长"卡片
   buff:
     buff_tips: 特长
-    buff_top: 脑回路新奇的 # 示例文字
-    buff_bottom: 产品人 # 示例文字
+    buff_top: 不想当 CEO 的产品经理 # 示例文字
+    buff_bottom: 不是好摄影师 # 示例文字
     # 粉色背景和文字样式可能需要自定义CSS
 
   # 对应截图的游戏卡片
@@ -99,7 +98,7 @@
     game_tips: 爱好游戏
     game_title: 英雄联盟 # 从 @md.mdc 获取
     # 游戏相关的背景图和英雄头像
-    game_bg: https://game.gtimg.cn/images/lol/act/img/skin/big1.jpg # LOL 官方背景图
+    game_bg: https://i.ibb.co/SDNfvJdv/lol.jpg # LOL 官方背景图
     game_url: https://lol.qq.com/ # 英雄联盟官网
     heroes: # 英雄头像列表
       - name: 亚索
@@ -117,22 +116,22 @@
   comic:
     comic_tips: 爱好番剧
     comic_title: 追番
-    comic_list: # 从 @md.mdc 获取，补充更多番剧
+    comic_list: # 更新为用户指定的番剧列表
+      - name: 灵笼
+        cover: https://i.ibb.co/twBYCvxx/image.jpg
+        href: https://www.bilibili.com/bangumi/media/md28228378
+      - name: 灌篮高手
+        cover: https://i.ibb.co/6Vs7tsC/3.jpg
+        href: https://www.bilibili.com/bangumi/media/md1565
       - name: 不良人
-        cover: https://i0.hdslb.com/bfs/bangumi/image/c01bae73c2f8c7877e3d2ac5b16a0e6a7ed1e1c0.png
+        cover: https://i.ibb.co/9khgrp6L/3.png
         href: https://www.bilibili.com/bangumi/media/md28236401
-      - name: 进击的巨人
-        cover: https://i0.hdslb.com/bfs/bangumi/image/fc3b89a60e1d8d55e0e8c5c6b7c7e7b2b4e3b8e7.png
-        href: https://www.bilibili.com/bangumi/media/md28224869
-      - name: 鬼灭之刃
-        cover: https://i0.hdslb.com/bfs/bangumi/image/8b5d0c1d9c6e6d0b6a7e5a8e9d6e8c7a8e9d6e8c.png
-        href: https://www.bilibili.com/bangumi/media/md28224869
-      - name: 咒术回战
-        cover: https://i0.hdslb.com/bfs/bangumi/image/d7e3c8a8b5e6c7d8e9a7b8c9d8e7c8a9b8c7d8e7.png
-        href: https://www.bilibili.com/bangumi/media/md28228870
-      - name: 原神
-        cover: https://i0.hdslb.com/bfs/bangumi/image/a8e7c9b8d7e8c9a8b7c8d9e8c7a9b8c7d8e9c8a7.png
-        href: https://www.bilibili.com/bangumi/media/md28235542
+      - name: 钢之炼金术师
+        cover: https://i.ibb.co/TxSdH1DZ/image.jpg
+        href: https://www.bilibili.com/bangumi/media/md839
+      - name: 海贼王
+        cover: https://i.ibb.co/fdggJmQY/image.jpg
+        href: https://www.bilibili.com/bangumi/media/md1552
 
   # 对应截图的音乐卡片
   music:
@@ -140,14 +139,14 @@
     music_title: 民谣、华语流行 # 从 @md.mdc 获取
     music_link: /music/ # 默认音乐页面链接
     # 音乐相关的背景图和网易云音乐歌单
-    music_bg: https://bu.dusays.com/2023/08/13/64d8c2e32afbe.jpg # 示例图片
+    music_bg: https://i.ibb.co/Xn6kVGF/image.jpg # 示例图片
     netease_playlist_id: 2829816518 # 网易云音乐歌单ID，民谣/华语流行精选
     qq_playlist_id: 8446666566 # QQ音乐歌单ID，备用
 
   # 对应截图的"关注偏好"卡片
   like:
     like_tips: 关注偏好
-    like_title: 数据科技 # 示例文字
+    like_title: AI 产品 # 示例文字
     like_bottom: 产品设计与数据分析 # 示例文字
     # 请替换为相关的背景图
     like_bg: https://bu.dusays.com/2022/12/06/638f5f05ce1f7.jpg # 示例图片
