@@ -98,28 +98,51 @@
   game:
     game_tips: 爱好游戏
     game_title: 英雄联盟 # 从 @md.mdc 获取
-    game_uid: 常玩的位置是辅助位，英雄是婕拉、锤石、日女、卡尔玛。 # 从 @md.mdc 获取
-    # 请替换为游戏相关的背景图
-    game_bg: https://example.com/lol_background.jpg # 示例图片
+    # 游戏相关的背景图和英雄头像
+    game_bg: https://game.gtimg.cn/images/lol/act/img/skin/big1.jpg # LOL 官方背景图
+    game_url: https://lol.qq.com/ # 英雄联盟官网
+    heroes: # 英雄头像列表
+      - name: 亚索
+        avatar: https://i.ibb.co/Xr8hm3xz/image.png 
+      - name: 婕拉
+        avatar: https://game.gtimg.cn/images/lol/act/img/champion/Zyra.png
+      - name: 锤石
+        avatar: https://game.gtimg.cn/images/lol/act/img/champion/Thresh.png
+      - name: 日女
+        avatar: https://game.gtimg.cn/images/lol/act/img/champion/Leona.png
+      - name: 卡尔玛
+        avatar: https://game.gtimg.cn/images/lol/act/img/champion/Karma.png
 
   # 对应截图的追番卡片
   comic:
     comic_tips: 爱好番剧
     comic_title: 追番
-    comic_list: # 从 @md.mdc 获取
+    comic_list: # 从 @md.mdc 获取，补充更多番剧
       - name: 不良人
-        # 请替换为番剧封面图
-        cover: https://example.com/blr_cover.jpg # 示例图片
-        # 请替换为番剧介绍或播放链接
-        href: https://www.bilibili.com/bangumi/media/md28236401 # 示例链接
+        cover: https://i0.hdslb.com/bfs/bangumi/image/c01bae73c2f8c7877e3d2ac5b16a0e6a7ed1e1c0.png
+        href: https://www.bilibili.com/bangumi/media/md28236401
+      - name: 进击的巨人
+        cover: https://i0.hdslb.com/bfs/bangumi/image/fc3b89a60e1d8d55e0e8c5c6b7c7e7b2b4e3b8e7.png
+        href: https://www.bilibili.com/bangumi/media/md28224869
+      - name: 鬼灭之刃
+        cover: https://i0.hdslb.com/bfs/bangumi/image/8b5d0c1d9c6e6d0b6a7e5a8e9d6e8c7a8e9d6e8c.png
+        href: https://www.bilibili.com/bangumi/media/md28224869
+      - name: 咒术回战
+        cover: https://i0.hdslb.com/bfs/bangumi/image/d7e3c8a8b5e6c7d8e9a7b8c9d8e7c8a9b8c7d8e7.png
+        href: https://www.bilibili.com/bangumi/media/md28228870
+      - name: 原神
+        cover: https://i0.hdslb.com/bfs/bangumi/image/a8e7c9b8d7e8c9a8b7c8d9e8c7a9b8c7d8e9c8a7.png
+        href: https://www.bilibili.com/bangumi/media/md28235542
 
   # 对应截图的音乐卡片
   music:
     music_tips: 音乐偏好
     music_title: 民谣、华语流行 # 从 @md.mdc 获取
     music_link: /music/ # 默认音乐页面链接
-    # 请替换为音乐相关的背景图
+    # 音乐相关的背景图和网易云音乐歌单
     music_bg: https://bu.dusays.com/2023/08/13/64d8c2e32afbe.jpg # 示例图片
+    netease_playlist_id: 2829816518 # 网易云音乐歌单ID，民谣/华语流行精选
+    qq_playlist_id: 8446666566 # QQ音乐歌单ID，备用
 
   # 对应截图的"关注偏好"卡片
   like:
