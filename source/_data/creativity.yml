@@ -1,46 +1,46 @@
 # source/_data/creativity.yml
-# 定义 about 页面的技能图标和颜色
+# 定义 about 页面的技能图标和颜色 - 使用本地图片
 - item_name: 技能列表 # 这个名称通常不直接显示，只是分组用
   creativity_list:
     - name: Sketch
       color: "#F7B500" # Sketch品牌色 - 金黄色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sketch/sketch-original.svg
+      icon: /img/skills/sketch.png # 本地图片
     - name: Figma
-      color: "#F24E1E" # Figma品牌色 - 橙红色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg
+      color: "#F24E1E" # Figma品牌色 - 橙红色  
+      icon: /img/skills/figma.png # 本地图片
     - name: Axure RP
       color: "#1E90FF" # 蓝色调，与产品原型工具匹配
-      icon: "https://i.ibb.co/C3pGcDx4/AxureRP.png"
+      icon: /img/skills/axure.png # 本地图片
     - name: Tableau
       color: "#E97627" # Tableau品牌色 - 橙色
-      icon: "https://i.ibb.co/0jLVYXCP/icon-tableau.png"
+      icon: /img/skills/tableau.png # 本地图片
     - name: PowerPoint
       color: "#D24726" # PPT品牌色 - 红橙色
-      icon: "https://i.ibb.co/8LmDVR5F/PPT.png"
+      icon: /img/skills/powerpoint.png # 本地图片
     - name: Python
       color: "#3776AB" # Python品牌色 - 蓝色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg
-    - name: Excel
-      color: "#217346" # Excel品牌色 - 绿色
-      icon: "https://i.ibb.co/kL6G9N8/excel.png"
+      icon: /img/skills/python.png # 本地图片
     - name: Notion
       color: "#37352F" # Notion品牌色 - 深灰色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg
-    - name: SQL
-      color: "#336791" # PostgreSQL蓝色，代表数据库
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg
+      icon: /img/skills/notion.png # 本地图片
     - name: XMind
       color: "#FF6B35" # 橙红色调，与思维导图工具匹配
-      icon: "https://i.ibb.co/M5sF4gkC/XMind.png"
+      icon: /img/skills/xmind.png # 本地图片
     - name: Spark
       color: "#E25A1C" # Apache Spark品牌色 - 橙色
-      icon: https://i.ibb.co/vvVwK56b/spark.png
+      icon: /img/skills/spark.png # 本地图片
     - name: TensorFlow
       color: "#FF6F00" # TensorFlow品牌色 - 橙色
-      icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg
-    # - name: Excalidraw # 您可以继续添加其他技能
-    #   color: "#6a7a8c"
-    #   icon: "/images/icons/excalidraw_icon.png"
+      icon: /img/skills/tensorflow.png # 本地图片
+    - name: Perplexity
+      color: "#1FB6FF" # Perplexity 品牌色 - 蓝色
+      icon: /img/skills/perplexity.png # 本地图片
+    - name: Claude
+      color: "#FF6B3A" # Claude 品牌色 - 橙色
+      icon: /img/skills/claude.png # 本地图片
+    - name: Excalidraw # 您可以继续添加其他技能
+      color: "#6a7a8c"
+      icon: "/images/skills/excalidraw.png"
     # - name: Omnigraffle
     #   color: "#1a9bdf"
     #   icon: "/images/icons/omnigraffle_icon.png"
