@@ -3,18 +3,18 @@
   # 对应截图个人卡片里的描述
   description: 热爱数据与AI，致力于将技术转化为产品价值
   # 您的头像图片链接，请替换成您自己的
-  avatarImg: https://bu.dusays.com/2023/04/27/64496e511b09c.jpg # 请替换
+  avatarImg: /img/touxiang.jpg # 请替换
   # 对应截图 "Hello there!" 卡片的内容，这里使用了您 @md.mdc 的座右铭
   helloAbout: 生活明朗，万物可爱✨
   # 对应截图头像周围的标签，您可以自定义
   avatarSkills:
     left:
       - "🤖️ 数码科技爱好者"
-      - "🔍 分享与热心帮助"
+      - "🔍 心有猛虎嗅蔷薇"
       - "🏠 智能家居小能手"
       - "🔨 设计开发一条龙"
     right:
-      - "专修产品与设计 🤝"
+      - "专修产品与增长 🤝"
       - "脚踏实地行动派 🏃"
       - "团队小组发动机 💪"
       - "壮汉人狠话不多 💢"
@@ -52,14 +52,6 @@
         color: "#f2be45" # 示例颜色
     # 截图中的时间轴样式可能需要特定主题支持或自定义
 
-  # 对应截图的地图卡片
-  map:
-    title: 我现在住在
-    StrengthenTitle: 中国 # @md.mdc 未提供具体城市，使用占位符
-    # 请替换为您的地图背景图片
-    background: https://bu.dusays.com/2022/12/16/639bcf33be840.png # 示例图片
-    backgroundDark: https://bu.dusays.com/2022/12/16/639bcf33c03c6.png # 示例图片
-
   # 对应截图的个人信息卡片
   selfInfo:
     selfInfoTips1: 生于
@@ -73,12 +65,97 @@
   personalities:
     author_name: INTJ-A # 更正为架构师型人格
     personality_type: 架构师型人格 # 更正类型名称
-    # 请替换为您自己的照片
-    photo_url: https://tuchong.com/123456/ # 示例，请替换为您的个人照片链接
     # 使用本地下载的性格类型图片
     personality_img: /img/personality/elon_musk.svg # 本地图片路径
     name_url: https://www.16personalities.com/ch/intj-人格 # INTJ介绍链接
-    personality_type_color: "#8e44ad" # 示例颜色
+    personality_type_color: "#8B5CF6" # 使用"原始"紫色
+
+  # 盖洛普优势才干模块
+  clifton_strengths:
+    tips: 盖洛普优势
+    title: 基因天赋
+    subtitle: 探索你的核心优势基因序列
+    genes:
+      - name: 1. 交往
+        module: 关系建立
+        description: "享受与朋友建立深度链接，并肩实现共同目标。"
+        color: "#4285F4" # 新蓝色
+      - name: 2. 统筹
+        module: 执行力
+        description: "灵活协调资源与任务，追求最高效率。"
+        color: "#9C27B0" # 新紫色
+      - name: 3. 成就
+        module: 执行力
+        description: "内心充满动力，享受完成任务带来的巨大满足感。"
+        color: "#9C27B0" # 新紫色
+      - name: 4. 专注
+        module: 执行力
+        description: "能够明确方向、保持专注，确保行动不偏离轨道。"
+        color: "#9C27B0" # 新紫色
+      - name: 5. 统率
+        module: 影响力
+        description: "具有天生的领导力，果断、敢于担当，能掌控局面。"
+        color: "#FF9800" # 新橙色
+      - name: 6. 分析
+        module: 战略思维
+        description: "探究事物本质，以数据和逻辑为依据，追求真相。"
+        color: "#4CAF50" # 新绿色
+      - name: 7. 战略
+        module: 战略思维
+        description: "迅速发现现象背后的关联模式，找到最佳实现路径。"
+        color: "#4CAF50" # 新绿色
+      - name: 8. 学习
+        module: 战略思维
+        description: "对知识有强烈渴求，享受学习和掌握新技能的过程。"
+        color: "#4CAF50" # 新绿色
+      - name: 9. 责任
+        module: 执行力
+        description: "恪守承诺，言出必行，对自己的行为结果高度负责。"
+        color: "#9C27B0" # 新紫色
+      - name: 10. 回顾
+        module: 战略思维
+        description: "喜欢回顾过去，通过理解历史背景来把握现在。"
+        color: "#4CAF50" # 新绿色
+      - name: 11. 理念
+        module: 战略思维
+        description: "对新奇想法着迷，能从无关现象中找到联系与思路。"
+        color: "#4CAF50" # 新绿色
+      - name: 12. 自信
+        module: 影响力
+        description: "对自身能力有坚定信念，能掌控人生、做出正确决定。"
+        color: "#FF9800" # 新橙色
+      - name: 13. 竞争
+        module: 影响力
+        description: "渴望在竞争中衡量自我价值，追求第一，享受胜利。"
+        color: "#FF9800" # 新橙色
+      - name: 14. 完美
+        module: 影响力
+        description: "专注于发挥优势，追求卓越，力求精益求精。"
+        color: "#FF9800" # 新橙色
+      - name: 15. 排难
+        module: 执行力
+        description: "是解决问题的高手，善于发现并修复问题，回归正轨。"
+        color: "#9C27B0" # 新紫色
+      - name: 16. 追求
+        module: 影响力
+        description: "渴望对他人产生巨大影响，希望自己的贡献被认可。"
+        color: "#FF9800" # 新橙色
+      - name: 17. 信仰
+        module: 执行力
+        description: "拥有坚定不移的核心价值观，以此作为明确生活目标。"
+        color: "#9C27B0" # 新紫色
+      - name: 18. 个别
+        module: 关系建立
+        description: "对他人的独特品质感兴趣，善于让不同的人高效共事。"
+        color: "#4285F4" # 新蓝色
+      - name: 19. 行动
+        module: 影响力
+        description: "能将想法迅速付诸行动，迫不及待地想看到进展。"
+        color: "#FF9800" # 新橙色
+      - name: 20. 审慎
+        module: 执行力
+        description: "决策时谨慎小心，会预先设想并规避所有潜在风险。"
+        color: "#9C27B0" # 新紫色
 
   # 对应截图的座右铭卡片
   maxim:

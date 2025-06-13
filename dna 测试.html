@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA 螺旋动画测试</title>
+    <style>
+        /*! DNA 螺旋动画样式 */
+        *,
+        ::after,
+        ::before {
+            box-sizing: inherit;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to top, #232323, #151515);
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+
+
+        .blueprint {
+            min-width: 470px;
+            height: 100px;
+            position: relative;
+            transform: rotate(90deg);
+            /* 添加发光效果 */
+        }
+
+        .blueprint * {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        /* 添加扫描线效果 */
+        .blueprint .scan-line {
+            content: '';
+            position: absolute;
+            width: 100%;
+            top: -25%;
+            left: 0;
+            height: 150%;
+            z-index: 3;
+            background: linear-gradient(to right, #fff, transparent 25%, transparent 75%, #fff);
+            -webkit-transform: translateZ(100px);
+            transform: translateZ(100px);
+            opacity: 0.3;
+        }
+
+        /* DNA链条 */
+        .blueprint .bar {
+            width: 2px;
+            height: 100%;
+            position: absolute;
+            background: #fff;
+            background-size: 10px 20px;
+            top: 0;
+            -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+            -webkit-animation: grow 8s linear infinite;
+            animation: grow 8s linear infinite;
+            will-change: transform;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            /* 添加发光效果 */
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+        }
+
+        /* 为每个链条设置不同大小的端点 */
+        .blueprint .bar:nth-of-type(1) .dot1,
+        .blueprint .bar:nth-of-type(1) .dot2 {
+            width: calc(10px + 1px);
+            height: calc(10px + 1px);
+        }
+
+        .blueprint .bar:nth-of-type(2) .dot1,
+        .blueprint .bar:nth-of-type(2) .dot2 {
+            width: calc(10px + 2px);
+            height: calc(10px + 2px);
+        }
+
+        .blueprint .bar:nth-of-type(3) .dot1,
+        .blueprint .bar:nth-of-type(3) .dot2 {
+            width: calc(10px + 3px);
+            height: calc(10px + 3px);
+        }
+
+        .blueprint .bar:nth-of-type(4) .dot1,
+        .blueprint .bar:nth-of-type(4) .dot2 {
+            width: calc(10px + 4px);
+            height: calc(10px + 4px);
+        }
+
+        .blueprint .bar:nth-of-type(5) .dot1,
+        .blueprint .bar:nth-of-type(5) .dot2 {
+            width: calc(10px + 5px);
+            height: calc(10px + 5px);
+        }
+
+        .blueprint .bar:nth-of-type(6) .dot1,
+        .blueprint .bar:nth-of-type(6) .dot2 {
+            width: calc(10px + 6px);
+            height: calc(10px + 6px);
+        }
+
+        .blueprint .bar:nth-of-type(7) .dot1,
+        .blueprint .bar:nth-of-type(7) .dot2 {
+            width: calc(10px + 7px);
+            height: calc(10px + 7px);
+        }
+
+        .blueprint .bar:nth-of-type(8) .dot1,
+        .blueprint .bar:nth-of-type(8) .dot2 {
+            width: calc(10px + 8px);
+            height: calc(10px + 8px);
+        }
+
+        .blueprint .bar:nth-of-type(9) .dot1,
+        .blueprint .bar:nth-of-type(9) .dot2 {
+            width: calc(10px + 9px);
+            height: calc(10px + 9px);
+        }
+
+        .blueprint .bar:nth-of-type(10) .dot1,
+        .blueprint .bar:nth-of-type(10) .dot2 {
+            width: calc(10px + 10px);
+            height: calc(10px + 10px);
+        }
+
+        .blueprint .bar:nth-of-type(11) .dot1,
+        .blueprint .bar:nth-of-type(11) .dot2 {
+            width: calc(30px - 11px);
+            height: calc(30px - 11px);
+        }
+
+        .blueprint .bar:nth-of-type(12) .dot1,
+        .blueprint .bar:nth-of-type(12) .dot2 {
+            width: calc(30px - 12px);
+            height: calc(30px - 12px);
+        }
+
+        .blueprint .bar:nth-of-type(13) .dot1,
+        .blueprint .bar:nth-of-type(13) .dot2 {
+            width: calc(30px - 13px);
+            height: calc(30px - 13px);
+        }
+
+        .blueprint .bar:nth-of-type(14) .dot1,
+        .blueprint .bar:nth-of-type(14) .dot2 {
+            width: calc(30px - 14px);
+            height: calc(30px - 14px);
+        }
+
+        .blueprint .bar:nth-of-type(15) .dot1,
+        .blueprint .bar:nth-of-type(15) .dot2 {
+            width: calc(30px - 15px);
+            height: calc(30px - 15px);
+        }
+
+        .blueprint .bar:nth-of-type(16) .dot1,
+        .blueprint .bar:nth-of-type(16) .dot2 {
+            width: calc(30px - 16px);
+            height: calc(30px - 16px);
+        }
+
+        .blueprint .bar:nth-of-type(17) .dot1,
+        .blueprint .bar:nth-of-type(17) .dot2 {
+            width: calc(30px - 17px);
+            height: calc(30px - 17px);
+        }
+
+        .blueprint .bar:nth-of-type(18) .dot1,
+        .blueprint .bar:nth-of-type(18) .dot2 {
+            width: calc(30px - 18px);
+            height: calc(30px - 18px);
+        }
+
+        .blueprint .bar:nth-of-type(19) .dot1,
+        .blueprint .bar:nth-of-type(19) .dot2 {
+            width: calc(30px - 19px);
+            height: calc(30px - 19px);
+        }
+
+        .blueprint .bar:nth-of-type(20) .dot1,
+        .blueprint .bar:nth-of-type(20) .dot2 {
+            width: calc(30px - 20px);
+            height: calc(30px - 20px);
+        }
+
+        .blueprint .bar:nth-of-type(21) .dot1,
+        .blueprint .bar:nth-of-type(21) .dot2 {
+            width: calc(30px - 21px);
+            height: calc(30px - 21px);
+        }
+
+        /* 设置每个链条的位置和动画延迟 */
+        .blueprint .bar:nth-of-type(1) {
+            left: calc(-15px);
+            -webkit-animation-delay: -.4s;
+            animation-delay: -.4s;
+        }
+
+        .blueprint .bar:nth-of-type(1) .dot1,
+        .blueprint .bar:nth-of-type(1) .dot2,
+        .blueprint .bar:nth-of-type(1):after,
+        .blueprint .bar:nth-of-type(1):before {
+            -webkit-animation-delay: -.4s;
+            animation-delay: -.4s;
+        }
+
+        .blueprint .bar:nth-of-type(2) {
+            left: calc(10px);
+            -webkit-animation-delay: -.8s;
+            animation-delay: -.8s;
+        }
+
+        .blueprint .bar:nth-of-type(2) .dot1,
+        .blueprint .bar:nth-of-type(2) .dot2,
+        .blueprint .bar:nth-of-type(2):after,
+        .blueprint .bar:nth-of-type(2):before {
+            -webkit-animation-delay: -.8s;
+            animation-delay: -.8s;
+        }
+
+        .blueprint .bar:nth-of-type(3) {
+            left: calc(35px);
+            -webkit-animation-delay: -1.2s;
+            animation-delay: -1.2s;
+        }
+
+        .blueprint .bar:nth-of-type(3) .dot1,
+        .blueprint .bar:nth-of-type(3) .dot2,
+        .blueprint .bar:nth-of-type(3):after,
+        .blueprint .bar:nth-of-type(3):before {
+            -webkit-animation-delay: -1.2s;
+            animation-delay: -1.2s;
+        }
+
+        .blueprint .bar:nth-of-type(4) {
+            left: calc(60px);
+            -webkit-animation-delay: -1.6s;
+            animation-delay: -1.6s;
+        }
+
+        .blueprint .bar:nth-of-type(4) .dot1,
+        .blueprint .bar:nth-of-type(4) .dot2,
+        .blueprint .bar:nth-of-type(4):after,
+        .blueprint .bar:nth-of-type(4):before {
+            -webkit-animation-delay: -1.6s;
+            animation-delay: -1.6s;
+        }
+
+        .blueprint .bar:nth-of-type(5) {
+            left: calc(85px);
+            -webkit-animation-delay: -2s;
+            animation-delay: -2s;
+        }
+
+        .blueprint .bar:nth-of-type(5) .dot1,
+        .blueprint .bar:nth-of-type(5) .dot2,
+        .blueprint .bar:nth-of-type(5):after,
+        .blueprint .bar:nth-of-type(5):before {
+            -webkit-animation-delay: -2s;
+            animation-delay: -2s;
+        }
+
+        .blueprint .bar:nth-of-type(6) {
+            left: calc(110px);
+            -webkit-animation-delay: -2.4s;
+            animation-delay: -2.4s;
+        }
+
+        .blueprint .bar:nth-of-type(6) .dot1,
+        .blueprint .bar:nth-of-type(6) .dot2,
+        .blueprint .bar:nth-of-type(6):after,
+        .blueprint .bar:nth-of-type(6):before {
+            -webkit-animation-delay: -2.4s;
+            animation-delay: -2.4s;
+        }
+
+        .blueprint .bar:nth-of-type(7) {
+            left: calc(135px);
+            -webkit-animation-delay: -2.8s;
+            animation-delay: -2.8s;
+        }
+
+        .blueprint .bar:nth-of-type(7) .dot1,
+        .blueprint .bar:nth-of-type(7) .dot2,
+        .blueprint .bar:nth-of-type(7):after,
+        .blueprint .bar:nth-of-type(7):before {
+            -webkit-animation-delay: -2.8s;
+            animation-delay: -2.8s;
+        }
+
+        .blueprint .bar:nth-of-type(8) {
+            left: calc(160px);
+            -webkit-animation-delay: -3.2s;
+            animation-delay: -3.2s;
+        }
+
+        .blueprint .bar:nth-of-type(8) .dot1,
+        .blueprint .bar:nth-of-type(8) .dot2,
+        .blueprint .bar:nth-of-type(8):after,
+        .blueprint .bar:nth-of-type(8):before {
+            -webkit-animation-delay: -3.2s;
+            animation-delay: -3.2s;
+        }
+
+        .blueprint .bar:nth-of-type(9) {
+            left: calc(185px);
+            -webkit-animation-delay: -3.6s;
+            animation-delay: -3.6s;
+        }
+
+        .blueprint .bar:nth-of-type(9) .dot1,
+        .blueprint .bar:nth-of-type(9) .dot2,
+        .blueprint .bar:nth-of-type(9):after,
+        .blueprint .bar:nth-of-type(9):before {
+            -webkit-animation-delay: -3.6s;
+            animation-delay: -3.6s;
+        }
+
+        .blueprint .bar:nth-of-type(10) {
+            left: calc(210px);
+            -webkit-animation-delay: -4s;
+            animation-delay: -4s;
+        }
+
+        .blueprint .bar:nth-of-type(10) .dot1,
+        .blueprint .bar:nth-of-type(10) .dot2,
+        .blueprint .bar:nth-of-type(10):after,
+        .blueprint .bar:nth-of-type(10):before {
+            -webkit-animation-delay: -4s;
+            animation-delay: -4s;
+        }
+
+        .blueprint .bar:nth-of-type(11) {
+            left: calc(235px);
+            -webkit-animation-delay: -4.4s;
+            animation-delay: -4.4s;
+        }
+
+        .blueprint .bar:nth-of-type(11) .dot1,
+        .blueprint .bar:nth-of-type(11) .dot2,
+        .blueprint .bar:nth-of-type(11):after,
+        .blueprint .bar:nth-of-type(11):before {
+            -webkit-animation-delay: -4.4s;
+            animation-delay: -4.4s;
+        }
+
+        .blueprint .bar:nth-of-type(12) {
+            left: calc(260px);
+            -webkit-animation-delay: -4.8s;
+            animation-delay: -4.8s;
+        }
+
+        .blueprint .bar:nth-of-type(12) .dot1,
+        .blueprint .bar:nth-of-type(12) .dot2,
+        .blueprint .bar:nth-of-type(12):after,
+        .blueprint .bar:nth-of-type(12):before {
+            -webkit-animation-delay: -4.8s;
+            animation-delay: -4.8s;
+        }
+
+        .blueprint .bar:nth-of-type(13) {
+            left: calc(285px);
+            -webkit-animation-delay: -5.2s;
+            animation-delay: -5.2s;
+        }
+
+        .blueprint .bar:nth-of-type(13) .dot1,
+        .blueprint .bar:nth-of-type(13) .dot2,
+        .blueprint .bar:nth-of-type(13):after,
+        .blueprint .bar:nth-of-type(13):before {
+            -webkit-animation-delay: -5.2s;
+            animation-delay: -5.2s;
+        }
+
+        .blueprint .bar:nth-of-type(14) {
+            left: calc(310px);
+            -webkit-animation-delay: -5.6s;
+            animation-delay: -5.6s;
+        }
+
+        .blueprint .bar:nth-of-type(14) .dot1,
+        .blueprint .bar:nth-of-type(14) .dot2,
+        .blueprint .bar:nth-of-type(14):after,
+        .blueprint .bar:nth-of-type(14):before {
+            -webkit-animation-delay: -5.6s;
+            animation-delay: -5.6s;
+        }
+
+        .blueprint .bar:nth-of-type(15) {
+            left: calc(335px);
+            -webkit-animation-delay: -6s;
+            animation-delay: -6s;
+        }
+
+        .blueprint .bar:nth-of-type(15) .dot1,
+        .blueprint .bar:nth-of-type(15) .dot2,
+        .blueprint .bar:nth-of-type(15):after,
+        .blueprint .bar:nth-of-type(15):before {
+            -webkit-animation-delay: -6s;
+            animation-delay: -6s;
+        }
+
+        .blueprint .bar:nth-of-type(16) {
+            left: calc(360px);
+            -webkit-animation-delay: -6.4s;
+            animation-delay: -6.4s;
+        }
+
+        .blueprint .bar:nth-of-type(16) .dot1,
+        .blueprint .bar:nth-of-type(16) .dot2,
+        .blueprint .bar:nth-of-type(16):after,
+        .blueprint .bar:nth-of-type(16):before {
+            -webkit-animation-delay: -6.4s;
+            animation-delay: -6.4s;
+        }
+
+        .blueprint .bar:nth-of-type(17) {
+            left: calc(385px);
+            -webkit-animation-delay: -6.8s;
+            animation-delay: -6.8s;
+        }
+
+        .blueprint .bar:nth-of-type(17) .dot1,
+        .blueprint .bar:nth-of-type(17) .dot2,
+        .blueprint .bar:nth-of-type(17):after,
+        .blueprint .bar:nth-of-type(17):before {
+            -webkit-animation-delay: -6.8s;
+            animation-delay: -6.8s;
+        }
+
+        .blueprint .bar:nth-of-type(18) {
+            left: calc(410px);
+            -webkit-animation-delay: -7.2s;
+            animation-delay: -7.2s;
+        }
+
+        .blueprint .bar:nth-of-type(18) .dot1,
+        .blueprint .bar:nth-of-type(18) .dot2,
+        .blueprint .bar:nth-of-type(18):after,
+        .blueprint .bar:nth-of-type(18):before {
+            -webkit-animation-delay: -7.2s;
+            animation-delay: -7.2s;
+        }
+
+        .blueprint .bar:nth-of-type(19) {
+            left: calc(435px);
+            -webkit-animation-delay: -7.6s;
+            animation-delay: -7.6s;
+        }
+
+        .blueprint .bar:nth-of-type(19) .dot1,
+        .blueprint .bar:nth-of-type(19) .dot2,
+        .blueprint .bar:nth-of-type(19):after,
+        .blueprint .bar:nth-of-type(19):before {
+            -webkit-animation-delay: -7.6s;
+            animation-delay: -7.6s;
+        }
+
+        .blueprint .bar:nth-of-type(20) {
+            left: calc(460px);
+            -webkit-animation-delay: -8s;
+            animation-delay: -8s;
+        }
+
+        .blueprint .bar:nth-of-type(20) .dot1,
+        .blueprint .bar:nth-of-type(20) .dot2,
+        .blueprint .bar:nth-of-type(20):after,
+        .blueprint .bar:nth-of-type(20):before {
+            -webkit-animation-delay: -8s;
+            animation-delay: -8s;
+        }
+
+        .blueprint .bar:nth-of-type(21) {
+            left: calc(475px);
+            -webkit-animation-delay: -8.4s;
+            animation-delay: -8.4s;
+        }
+
+        .blueprint .bar:nth-of-type(21) .dot1,
+        .blueprint .bar:nth-of-type(21) .dot2,
+        .blueprint .bar:nth-of-type(21):after,
+        .blueprint .bar:nth-of-type(21):before {
+            -webkit-animation-delay: -8.4s;
+            animation-delay: -8.4s;
+        }
+
+        /* DNA链条端点（圆点） */
+        .blueprint .bar .dot1,
+        .blueprint .bar .dot2 {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 100%;
+            left: 50%;
+            top: -30px;
+            -webkit-animation: shrink 8s linear infinite;
+            animation: shrink 8s linear infinite;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform: translateX(-50%) rotateX(0);
+            transform: translateX(-50%) rotateX(0);
+            /* 添加发光效果 */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 
+                        0 0 16px rgba(255, 255, 255, 0.3);
+        }
+
+        .blueprint .bar .dot2 {
+            top: auto;
+            bottom: -30px;
+            background: #fff;
+        }
+
+        /* 链条末端的小点 */
+        .blueprint .bar:after,
+        .blueprint .bar:before {
+            content: '';
+            box-shadow: 0 0 0 2px #fff;
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 0;
+            left: 50%;
+            bottom: 0;
+            -webkit-animation: shrink2 8s linear infinite;
+            animation: shrink2 8s linear infinite;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform: translateX(-50%) rotateX(0) translateZ(2px);
+            transform: translateX(-50%) rotateX(0) translateZ(2px);
+        }
+
+        .blueprint .bar:after {
+            bottom: auto;
+            top: 0;
+        }
+        
+        /* 活跃状态的链条小点颜色 */
+        .blueprint .bar.active-bar:after,
+        .blueprint .bar.active-bar:before {
+            background: var(--active-color, #fff);
+            box-shadow: 0 0 0 2px var(--active-color, #fff);
+        }
+
+        /* 动画关键帧 */
+        @-webkit-keyframes grow {
+            to {
+                -webkit-transform: rotateX(360deg);
+                transform: rotateX(360deg);
+            }
+        }
+
+        @keyframes grow {
+            to {
+                -webkit-transform: rotateX(360deg);
+                transform: rotateX(360deg);
+            }
+        }
+
+        @-webkit-keyframes shrink {
+            100% {
+                -webkit-transform: translateX(-50%) rotateX(-360deg);
+                transform: translateX(-50%) rotateX(-360deg);
+            }
+        }
+
+        @keyframes shrink {
+            100% {
+                -webkit-transform: translateX(-50%) rotateX(-360deg);
+                transform: translateX(-50%) rotateX(-360deg);
+            }
+        }
+
+        @-webkit-keyframes shrink2 {
+            100% {
+                -webkit-transform: translateX(-50%) rotateX(-360deg) translateZ(2px);
+                transform: translateX(-50%) rotateX(-360deg) translateZ(2px);
+            }
+        }
+
+        @keyframes shrink2 {
+            100% {
+                -webkit-transform: translateX(-50%) rotateX(-360deg) translateZ(2px);
+                transform: translateX(-50%) rotateX(-360deg) translateZ(2px);
+            }
+        }
+
+
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .blueprint {
+                min-width: 300px;
+                transform: scale(0.8);
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="blueprint">
+            <!-- 扫描线效果 -->
+            <div class="scan-line"></div>
+            
+            <!-- DNA链条结构：20个基因对 -->
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+            <div class="bar">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 基因数据和颜色配置
+        const geneData = [
+            { name: "交往", color: "#4285F4" },      // 蓝色
+            { name: "统筹", color: "#9C27B0" },      // 紫色
+            { name: "成就", color: "#9C27B0" },      // 紫色
+            { name: "专注", color: "#9C27B0" },      // 紫色
+            { name: "统率", color: "#FF9800" },      // 橙色
+            { name: "分析", color: "#4CAF50" },      // 绿色
+            { name: "战略", color: "#4CAF50" },      // 绿色
+            { name: "学习", color: "#4CAF50" },      // 绿色
+            { name: "责任", color: "#9C27B0" },      // 紫色
+            { name: "回顾", color: "#4CAF50" },      // 绿色
+            { name: "理念", color: "#4CAF50" },      // 绿色
+            { name: "自信", color: "#FF9800" },      // 橙色
+            { name: "竞争", color: "#FF9800" },      // 橙色
+            { name: "完美", color: "#FF9800" },      // 橙色
+            { name: "排难", color: "#9C27B0" },      // 紫色
+            { name: "追求", color: "#FF9800" },      // 橙色
+            { name: "信仰", color: "#9C27B0" },      // 紫色
+            { name: "个别", color: "#4285F4" },      // 蓝色
+            { name: "行动", color: "#FF9800" },      // 橙色
+            { name: "审慎", color: "#9C27B0" }       // 紫色
+        ];
+        
+        // 动画控制功能
+        let currentActiveBar = 0;
+        let colorRotationInterval;
+
+
+
+        // 更新DNA链条颜色
+        function updateBarColors() {
+            const bars = document.querySelectorAll('.blueprint .bar');
+            
+            bars.forEach((bar, index) => {
+                const barElement = bar;
+                const dot1 = bar.querySelector('.dot1');
+                const dot2 = bar.querySelector('.dot2');
+                
+                if (index === currentActiveBar) {
+                    // 当前活跃的链条使用对应颜色
+                    const activeColor = geneData[index].color;
+                    barElement.style.background = activeColor;
+                    barElement.style.boxShadow = `0 0 8px ${activeColor}, 0 0 16px ${activeColor}`;
+                    
+                    // 设置线条两端大圆点的颜色
+                    if (dot1) {
+                        dot1.style.background = activeColor;
+                        dot1.style.boxShadow = `0 0 12px ${activeColor}, 0 0 24px ${activeColor}`;
+                    }
+                    if (dot2) {
+                        dot2.style.background = activeColor;
+                        dot2.style.boxShadow = `0 0 12px ${activeColor}, 0 0 24px ${activeColor}`;
+                    }
+                    
+                    // 设置线条两端小点的颜色 (:before 和 :after 伪元素)
+                    barElement.style.setProperty('--active-color', activeColor);
+                    barElement.classList.add('active-bar');
+                } else {
+                    // 其他链条保持默认白色
+                    barElement.style.background = '#fff';
+                    barElement.style.boxShadow = '0 0 4px rgba(255, 255, 255, 0.5)';
+                    
+                    if (dot1) {
+                        dot1.style.background = '#fff';
+                        dot1.style.boxShadow = '0 0 8px rgba(255, 255, 255, 0.6), 0 0 16px rgba(255, 255, 255, 0.3)';
+                    }
+                    if (dot2) {
+                        dot2.style.background = '#fff';
+                        dot2.style.boxShadow = '0 0 8px rgba(255, 255, 255, 0.6), 0 0 16px rgba(255, 255, 255, 0.3)';
+                    }
+                    
+                    // 移除活跃状态
+                    barElement.classList.remove('active-bar');
+                }
+            });
+            
+
+        }
+        
+        // 启动颜色轮换
+        function startColorRotation() {
+            colorRotationInterval = setInterval(() => {
+                currentActiveBar = (currentActiveBar + 1) % geneData.length;
+                updateBarColors();
+                
+                // 在控制台显示当前基因信息
+                const currentGene = geneData[currentActiveBar];
+                console.log(`🧬 当前展示: ${currentGene.name} (${currentActiveBar + 1}/20) - 颜色: ${currentGene.color}`);
+            }, 2000); // 每2秒切换一次
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化颜色
+            updateBarColors();
+            
+            // 启动颜色轮换
+            startColorRotation();
+        });
+    </script>
+</body>
+</html>

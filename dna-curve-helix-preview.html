@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA曲线双螺旋效果预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        
+        .preview-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 800px;
+        }
+        
+        .info-section {
+            flex: 1;
+            color: white;
+        }
+        
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #a8edea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .gene-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+        }
+        
+        .gene-description {
+            font-size: 16px;
+            opacity: 0.8;
+            font-style: italic;
+            transition: all 0.5s ease;
+        }
+        
+        /* DNA双螺旋样式 - 使用简化的bar结构 */
+        .gene-visual {
+            position: relative;
+            perspective: 800px;
+            perspective-origin: center center;
+        }
+        
+        .gene-sequence-container {
+            position: relative;
+            width: 140px;
+            height: 220px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        
+        /* DNA螺旋链条容器 */
+        .dna-helix {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+        
+        /* DNA链条 - 简化版本 */
+        .dna-bar {
+            width: 2px;
+            height: 100%;
+            position: absolute;
+            background: linear-gradient(to bottom, 
+                rgba(100, 149, 237, 0.3) 0%,
+                rgba(30, 144, 255, 0.9) 50%,
+                rgba(100, 149, 237, 0.3) 100%);
+            backdrop-filter: blur(8px);
+            border: 0.5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                0 0 6px rgba(65, 105, 225, 0.5);
+            top: 0;
+            transform-style: preserve-3d;
+            animation: grow 8s linear infinite;
+            will-change: transform;
+        }
+        
+        /* 设置每个链条的位置和动画延迟 - 模拟双螺旋分布 */
+        .dna-bar:nth-of-type(1) {
+            left: calc(20% + 0px);
+            animation-delay: -0.4s;
+        }
+        
+        .dna-bar:nth-of-type(2) {
+            left: calc(25% + 5px);
+            animation-delay: -0.8s;
+        }
+        
+        .dna-bar:nth-of-type(3) {
+            left: calc(30% + 10px);
+            animation-delay: -1.2s;
+        }
+        
+        .dna-bar:nth-of-type(4) {
+            left: calc(35% + 15px);
+            animation-delay: -1.6s;
+        }
+        
+        .dna-bar:nth-of-type(5) {
+            left: calc(40% + 20px);
+            animation-delay: -2s;
+        }
+        
+        .dna-bar:nth-of-type(6) {
+            left: calc(45% + 25px);
+            animation-delay: -2.4s;
+        }
+        
+        .dna-bar:nth-of-type(7) {
+            left: calc(50% + 20px);
+            animation-delay: -2.8s;
+        }
+        
+        .dna-bar:nth-of-type(8) {
+            left: calc(55% + 15px);
+            animation-delay: -3.2s;
+        }
+        
+        .dna-bar:nth-of-type(9) {
+            left: calc(60% + 10px);
+            animation-delay: -3.6s;
+        }
+        
+        .dna-bar:nth-of-type(10) {
+            left: calc(65% + 5px);
+            animation-delay: -4s;
+        }
+        
+        /* DNA链条端点（圆点） */
+        .dna-bar .dot1,
+        .dna-bar .dot2 {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            left: 50%;
+            top: -4px;
+            transform: translateX(-50%);
+            animation: shrink 8s linear infinite;
+            transform-style: preserve-3d;
+            box-shadow: 
+                0 0 8px rgba(255, 255, 255, 0.6), 
+                0 0 16px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        
+        .dna-bar .dot2 {
+            top: auto;
+            bottom: -4px;
+        }
+        
+        /* 链条末端的小点 - 来自DNA测试文件 */
+        .dna-bar:after,
+        .dna-bar:before {
+            content: '';
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            left: 50%;
+            bottom: 0;
+            animation: shrink2 8s linear infinite;
+            transform-style: preserve-3d;
+            transform: translateX(-50%) rotateX(0) translateZ(2px);
+        }
+        
+        .dna-bar:after {
+            bottom: auto;
+            top: 0;
+        }
+        
+        /* 为不同的链条设置不同大小的端点 */
+        .dna-bar:nth-of-type(1) .dot1,
+        .dna-bar:nth-of-type(1) .dot2 {
+            width: 6px;
+            height: 6px;
+            animation-delay: -0.4s;
+        }
+        
+        .dna-bar:nth-of-type(2) .dot1,
+        .dna-bar:nth-of-type(2) .dot2 {
+            width: 7px;
+            height: 7px;
+            animation-delay: -0.8s;
+        }
+        
+        .dna-bar:nth-of-type(3) .dot1,
+        .dna-bar:nth-of-type(3) .dot2 {
+            width: 8px;
+            height: 8px;
+            animation-delay: -1.2s;
+        }
+        
+        .dna-bar:nth-of-type(4) .dot1,
+        .dna-bar:nth-of-type(4) .dot2 {
+            width: 9px;
+            height: 9px;
+            animation-delay: -1.6s;
+        }
+        
+        .dna-bar:nth-of-type(5) .dot1,
+        .dna-bar:nth-of-type(5) .dot2 {
+            width: 10px;
+            height: 10px;
+            animation-delay: -2s;
+        }
+        
+        .dna-bar:nth-of-type(6) .dot1,
+        .dna-bar:nth-of-type(6) .dot2 {
+            width: 9px;
+            height: 9px;
+            animation-delay: -2.4s;
+        }
+        
+        .dna-bar:nth-of-type(7) .dot1,
+        .dna-bar:nth-of-type(7) .dot2 {
+            width: 8px;
+            height: 8px;
+            animation-delay: -2.8s;
+        }
+        
+        .dna-bar:nth-of-type(8) .dot1,
+        .dna-bar:nth-of-type(8) .dot2 {
+            width: 7px;
+            height: 7px;
+            animation-delay: -3.2s;
+        }
+        
+        .dna-bar:nth-of-type(9) .dot1,
+        .dna-bar:nth-of-type(9) .dot2 {
+            width: 6px;
+            height: 6px;
+            animation-delay: -3.6s;
+        }
+        
+        .dna-bar:nth-of-type(10) .dot1,
+        .dna-bar:nth-of-type(10) .dot2 {
+            width: 5px;
+            height: 5px;
+            animation-delay: -4s;
+        }
+        
+        /* 为每个链条的小点设置相同的动画延迟 */
+        .dna-bar:nth-of-type(1):after,
+        .dna-bar:nth-of-type(1):before {
+            animation-delay: -0.4s;
+        }
+        
+        .dna-bar:nth-of-type(2):after,
+        .dna-bar:nth-of-type(2):before {
+            animation-delay: -0.8s;
+        }
+        
+        .dna-bar:nth-of-type(3):after,
+        .dna-bar:nth-of-type(3):before {
+            animation-delay: -1.2s;
+        }
+        
+        .dna-bar:nth-of-type(4):after,
+        .dna-bar:nth-of-type(4):before {
+            animation-delay: -1.6s;
+        }
+        
+        .dna-bar:nth-of-type(5):after,
+        .dna-bar:nth-of-type(5):before {
+            animation-delay: -2s;
+        }
+        
+        .dna-bar:nth-of-type(6):after,
+        .dna-bar:nth-of-type(6):before {
+            animation-delay: -2.4s;
+        }
+        
+        .dna-bar:nth-of-type(7):after,
+        .dna-bar:nth-of-type(7):before {
+            animation-delay: -2.8s;
+        }
+        
+        .dna-bar:nth-of-type(8):after,
+        .dna-bar:nth-of-type(8):before {
+            animation-delay: -3.2s;
+        }
+        
+        .dna-bar:nth-of-type(9):after,
+        .dna-bar:nth-of-type(9):before {
+            animation-delay: -3.6s;
+        }
+        
+        .dna-bar:nth-of-type(10):after,
+        .dna-bar:nth-of-type(10):before {
+            animation-delay: -4s;
+        }
+        
+        .gene-sequence-container.rotating {
+            animation: dna-container-rotation 1.5s cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        
+        .gene-stripes-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            transform-style: preserve-3d;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .gene-stripes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            height: 85%;
+            transform-style: preserve-3d;
+        }
+        
+        .gene-stripe {
+            width: 40px;
+            height: 5px;
+            border-radius: 2.5px;
+            cursor: pointer;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.6, 1);
+            position: relative;
+            transform-style: preserve-3d;
+            background: transparent;
+        }
+        
+        /* 3D螺旋分布 */
+        .gene-stripe:nth-child(1) { transform: rotateX(0deg) rotateY(0deg) translateZ(0px); }
+        .gene-stripe:nth-child(2) { transform: rotateX(18deg) rotateY(36deg) translateZ(5px); }
+        .gene-stripe:nth-child(3) { transform: rotateX(36deg) rotateY(72deg) translateZ(10px); }
+        .gene-stripe:nth-child(4) { transform: rotateX(54deg) rotateY(108deg) translateZ(5px); }
+        .gene-stripe:nth-child(5) { transform: rotateX(72deg) rotateY(144deg) translateZ(0px); }
+        .gene-stripe:nth-child(6) { transform: rotateX(90deg) rotateY(180deg) translateZ(-5px); }
+        .gene-stripe:nth-child(7) { transform: rotateX(108deg) rotateY(216deg) translateZ(-10px); }
+        .gene-stripe:nth-child(8) { transform: rotateX(126deg) rotateY(252deg) translateZ(-5px); }
+        .gene-stripe:nth-child(9) { transform: rotateX(144deg) rotateY(288deg) translateZ(0px); }
+        .gene-stripe:nth-child(10) { transform: rotateX(162deg) rotateY(324deg) translateZ(5px); }
+        
+        /* 化学键连接点 */
+        .gene-stripe::before,
+        .gene-stripe::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.6, 1);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .gene-stripe::before {
+            left: -2.5px;
+        }
+        
+        .gene-stripe::after {
+            right: -2.5px;
+        }
+        
+        .gene-stripe.active {
+            background: var(--gene-color);
+            transform: rotateX(var(--rotation-x, 0deg)) rotateY(var(--rotation-y, 0deg)) translateZ(15px) scale(1.3);
+            filter: brightness(1.2) saturate(1.3);
+            box-shadow: 
+                0 0 15px var(--gene-color),
+                0 0 30px var(--gene-color),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            animation: gene-pulse 3s ease-in-out infinite alternate;
+        }
+        
+        .gene-stripe.active::before,
+        .gene-stripe.active::after {
+            background: var(--gene-color);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 0 10px var(--gene-color),
+                0 0 20px rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.4);
+        }
+        
+        .gene-stripe.inactive {
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0.3;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .gene-stripe.inactive::before,
+        .gene-stripe.inactive::after {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        
+        /* 动画定义 - DNA测试文件版本 */
+        @keyframes grow {
+            to {
+                transform: rotateX(360deg);
+            }
+        }
+        
+        @keyframes shrink {
+            100% {
+                transform: translateX(-50%) rotateX(-360deg);
+            }
+        }
+        
+        @keyframes shrink2 {
+            100% {
+                transform: translateX(-50%) rotateX(-360deg) translateZ(2px);
+            }
+        }
+        
+        @keyframes dna-container-rotation {
+            0%   { transform: rotateY(0deg) rotateX(0deg); }
+            33%  { transform: rotateY(120deg) rotateX(15deg); }
+            66%  { transform: rotateY(240deg) rotateX(-15deg); }
+            100% { transform: rotateY(360deg) rotateX(0deg); }
+        }
+        
+        @keyframes gene-pulse {
+            0% { 
+                filter: brightness(1.0) saturate(1.2);
+                box-shadow: 
+                    0 0 10px var(--gene-color),
+                    0 0 20px var(--gene-color),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            100% { 
+                filter: brightness(1.4) saturate(1.5);
+                box-shadow: 
+                    0 0 20px var(--gene-color),
+                    0 0 40px var(--gene-color),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .preview-container {
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 30px;
+            }
+            
+            .gene-sequence-container {
+                width: 100px;
+                height: 160px;
+            }
+            
+            .gene-stripe {
+                width: 30px;
+                height: 4px;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+            
+            .dna-bar {
+                width: 1.5px;
+            }
+            
+            .dna-bar .dot1,
+            .dna-bar .dot2 {
+                width: 6px;
+                height: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <div class="info-section">
+            <div class="subtitle">优势才干</div>
+            <h1 class="title">基因天赋</h1>
+            <div id="current-gene-name" class="gene-name">交往</div>
+            <div id="current-gene-description" class="gene-description">"我最大的满足是与朋友一道为实现某个目标而共同努力"</div>
+        </div>
+        
+        <div class="gene-visual">
+            <div class="gene-sequence-container">
+                <!-- DNA螺旋链条 - 使用简化的bar结构 -->
+                <div class="dna-helix">
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                    <div class="dna-bar">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                </div>
+                
+                <div class="gene-stripes-inner">
+                    <div id="gene-stripes" class="gene-stripes">
+                        <!-- 基因线条将通过JavaScript生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 盖洛普才干基因数据
+        const cliftonGenes = [
+            { name: "交往", color: "#4285F4", module: "影响力", description: "我最大的满足是与朋友一道为实现某个目标而共同努力" },
+            { name: "分析", color: "#34A853", module: "战略思维", description: "我喜欢思考影响人们行为的因素" },
+            { name: "责任", color: "#EA4335", module: "执行力", description: "我对自己承诺的任何事情都会承担心理上的责任" },
+            { name: "前瞻", color: "#FBBC04", module: "战略思维", description: "我能够看到未来的图景，这一景象激励着我和其他人" },
+            { name: "个别", color: "#9C27B0", module: "人际关系", description: "我对每个人的独特品质和特点很感兴趣" },
+            { name: "成就", color: "#FF5722", module: "执行力", description: "我有巨大的工作毅力，我从忙碌和富有成效中获得满足感" },
+            { name: "竞争", color: "#607D8B", module: "影响力", description: "我将其他人的表现作为衡量标准，我努力争取第一" },
+            { name: "沟通", color: "#795548", module: "影响力", description: "我喜欢解释、主持、演讲、写作，总之是说话" },
+            { name: "关联", color: "#3F51B5", module: "人际关系", description: "我相信事物之间都有其原因，我坚信巧合很少" },
+            { name: "完美", color: "#009688", module: "执行力", description: "我对秩序和准确性有着强烈的需求" }
+        ];
+        
+        let currentGeneIndex = 0;
+        let autoPlayInterval;
+        
+        // 生成基因线条
+        function createGeneStripes() {
+            const container = document.getElementById('gene-stripes');
+            container.innerHTML = '';
+            
+            cliftonGenes.forEach((gene, index) => {
+                const stripe = document.createElement('div');
+                stripe.className = 'gene-stripe';
+                stripe.style.setProperty('--gene-color', gene.color);
+                stripe.dataset.index = index;
+                stripe.title = `${gene.name} - ${gene.module}`;
+                
+                stripe.addEventListener('click', () => {
+                    currentGeneIndex = index;
+                    updateDisplay();
+                    resetAutoPlay();
+                });
+                
+                container.appendChild(stripe);
+            });
+        }
+        
+        // 更新显示状态
+        function updateDisplay() {
+            const stripes = document.querySelectorAll('.gene-stripe');
+            const container = document.querySelector('.gene-sequence-container');
+            
+            // 添加DNA容器旋转动画
+            if (container) {
+                container.classList.add('rotating');
+                
+                setTimeout(() => {
+                    container.classList.remove('rotating');
+                }, 1500);
+            }
+            
+            stripes.forEach((stripe, index) => {
+                stripe.classList.remove('active', 'inactive');
+                if (index === currentGeneIndex) {
+                    stripe.classList.add('active');
+                    const rotationX = index * 18;
+                    const rotationY = index * 36;
+                    stripe.style.setProperty('--rotation-x', `${rotationX}deg`);
+                    stripe.style.setProperty('--rotation-y', `${rotationY}deg`);
+                } else {
+                    stripe.classList.add('inactive');
+                }
+            });
+            
+            updateGeneInfo();
+        }
+        
+        // 更新基因信息
+        function updateGeneInfo() {
+            const currentGene = cliftonGenes[currentGeneIndex];
+            const nameElement = document.getElementById('current-gene-name');
+            const descElement = document.getElementById('current-gene-description');
+            
+            if (nameElement) {
+                nameElement.classList.remove('fade-in');
+                nameElement.style.color = currentGene.color;
+                nameElement.textContent = currentGene.name;
+                setTimeout(() => {
+                    nameElement.classList.add('fade-in');
+                }, 50);
+            }
+            
+            if (descElement) {
+                descElement.classList.remove('fade-in');
+                descElement.textContent = `"${currentGene.description}"`;
+                setTimeout(() => {
+                    descElement.classList.add('fade-in');
+                }, 50);
+            }
+        }
+        
+        // 自动播放
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                currentGeneIndex = (currentGeneIndex + 1) % cliftonGenes.length;
+                updateDisplay();
+            }, 4000);
+        }
+        
+        // 重置自动播放
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createGeneStripes();
+            updateDisplay();
+            startAutoPlay();
+            
+            // 页面可见性变化时控制播放
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    clearInterval(autoPlayInterval);
+                } else {
+                    startAutoPlay();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
