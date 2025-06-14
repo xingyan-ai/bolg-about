@@ -5,8 +5,7 @@
   # 您的头像图片链接，请替换成您自己的
   avatarImg: /img/touxiang.jpg # 请替换
   # 对应截图 "Hello there!" 卡片的内容，这里使用了您 @md.mdc 的座右铭
-  helloAbout: 生活明朗，万物可爱✨
-  # 对应截图头像周围的标签，您可以自定义
+
   avatarSkills:
     left:
       - "🤖️ 数码科技爱好者"
@@ -214,11 +213,9 @@
   music:
     music_tips: 音乐偏好
     music_title: 民谣、华语流行 # 从 @md.mdc 获取
-    music_link: https://music.xingyan.me # 默认音乐页面链接
-    # 音乐相关的背景图和网易云音乐歌单
+    music_link: /music/ # 默认音乐页面链接
+    # 音乐相关的背景图和酷狗音乐歌单
     music_bg: /img/music/music-bg.jpg # 音乐背景图 - 本地图片
-    netease_playlist_id: 2829816518 # 网易云音乐歌单ID，民谣/华语流行精选
-    qq_playlist_id: 8446666566 # QQ音乐歌单ID，备用
 
   # 对应截图的"关注偏好"卡片
   like:

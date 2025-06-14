@@ -845,15 +845,15 @@ const anzhiyu = {
       return;
     }
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = "8152976493";
-    const userServer = "netease";
+    const userId = "3zkxb3yizpz0a7";
+    const userServer = "kugou";
     const anMusicPageMeting = document.getElementById("anMusic-page-meting");
     if (urlParams.get("id") && urlParams.get("server")) {
       const id = urlParams.get("id");
       const server = urlParams.get("server");
-      anMusicPageMeting.innerHTML = `<meting-js id="${id}" server=${server} type="playlist" type="playlist" mutex="true" preload="auto" theme="var(--anzhiyu-main)" order="list" list-max-height="calc(100vh - 169px)!important"></meting-js>`;
+      anMusicPageMeting.innerHTML = `<meting-js id="${id}" server=${server} type="playlist" type="playlist" mutex="true" preload="auto" theme="var(--anzhiyu-main)" order="list" list-max-height="calc(100vh - 169px)!important" api="https://api.met.bz/meting/api.php"></meting-js>`;
     } else {
-      anMusicPageMeting.innerHTML = `<meting-js id="${userId}" server="${userServer}" type="playlist" mutex="true" preload="auto" theme="var(--anzhiyu-main)" order="list" list-max-height="calc(100vh - 169px)!important"></meting-js>`;
+      anMusicPageMeting.innerHTML = `<meting-js id="${userId}" server="${userServer}" type="playlist" mutex="true" preload="auto" theme="var(--anzhiyu-main)" order="list" list-max-height="calc(100vh - 169px)!important" api="https://api.met.bz/meting/api.php"></meting-js>`;
     }
     anzhiyu.changeMusicBg(false);
   },

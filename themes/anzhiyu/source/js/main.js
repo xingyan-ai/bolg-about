@@ -1853,4 +1853,13 @@ document.addEventListener("DOMContentLoaded", function () {
   initRightMenu();
   refreshFn();
   unRefreshFn();
+
+  if (window.location.pathname == "/music/") {
+    // 强制加载不生效,anzhiyu
+    let anzhiyu_music_page = new MetingJS({
+      id: "3zkxb3yizpz0a7",
+      server: "kugou",
+      type: "playlist",
+    });
+  }
 });
