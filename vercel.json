@@ -1,14 +1,18 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/",
       "has": [{ "type": "host", "value": "about.xingyan.me" }],
-      "destination": "/$1"
+      "destination": "/index.html"
     },
     {
       "source": "/",
       "has": [{ "type": "host", "value": "music.xingyan.me" }],
-      "destination": "/music/"
+      "destination": "/music/index.html"
+    },
+    {
+      "source": "/:asset(css|js|img|fonts|media|lib)/:path*",
+      "destination": "/:asset/:path*"
     }
   ]
 } 
