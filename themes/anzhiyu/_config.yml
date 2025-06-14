@@ -9,20 +9,20 @@ menu:
   #   朋友圈: /fcircle/ || anzhiyu-icon-artstation
   #   留言板: /comments/ || anzhiyu-icon-envelope
 
-  # 我的:
-  #   音乐馆: /music/ || anzhiyu-icon-music
+  我的:
+    音乐馆: /music/ || anzhiyu-icon-music
   #   追番页: /bangumis/ || anzhiyu-icon-bilibili
   #   相册集: /album/ || anzhiyu-icon-images
   #   小空调: /air-conditioner/ || anzhiyu-icon-fan
 
-  # 关于:
-  #   关于本人: /about/ || anzhiyu-icon-paper-plane
+  关于:
+    关于本人: /about/ || anzhiyu-icon-paper-plane
   #   闲言碎语: /essay/ || anzhiyu-icon-lightbulb
   #   随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints1
 
 # nav相关配置
 nav:
-  enable: false
+  enable: false # 隐藏顶部导航栏
   travelling: false
   clock: false
   menu:
@@ -136,15 +136,15 @@ katex:
 # --------------------------------------
 
 # Favicon（网站图标）
-favicon: /favicon.ico
+# favicon: /favicon.ico
 
 # Avatar (头像)
-avatar:
-  img: https://bu.dusays.com/2023/04/27/64496e511b09c.jpg
-  effect: false
+# avatar:
+#   img: https://bu.dusays.com/2023/04/27/64496e511b09c.jpg
+#   effect: false
 
 # Disable all banner image
-disable_top_img: false
+disable_top_img: true # 禁用所有页面的顶部横幅区域（包含导航栏）
 
 # The banner image of home page
 index_img: false # "background: url() top / cover no-repeat"
@@ -193,7 +193,7 @@ post_meta:
 # 主色调相关配置
 mainTone:
   enable: false # true or false 文章是否启用获取图片主色调
-  mode: api # colorthief/cdn/api/both colorthief模式为前端获取图片主色调，cdn模式为图片url+imageAve参数获取主色调，api模式为请求API获取主色调，both模式会先请求cdn参数，无法获取的情况下将请求API获取，可以在文章内配置main_color: '#3e5658'，使用十六进制颜色，则不会请求colorthief/cdn/api/both获取主色调，而是直接使用配置的颜色
+  mode: api # cdn/api/both cdn模式为图片url+imageAve参数获取主色调，api模式为请求API获取主色调，both模式会先请求cdn参数，无法获取的情况下将请求API获取，可以在文章内配置main_color: '#3e5658'，使用十六进制颜色，则不会请求both/cdn/api获取主色调，而是直接使用配置的颜色
   # 项目地址：https://github.com/anzhiyu-c/img2color-go
   api: https://img2color-go.vercel.app/api?img= # mode为api时可填写
   cover_change: true # 整篇文章跟随cover修改主色调
@@ -263,7 +263,7 @@ post_edit: # 目前仅可选择一个平台在线编辑
 
   # yuque: https://www.yuque.com/user-name/repo-name/
   # 示例: https://www.yuque.com/yuque/yuque/
-  # 你需要在语雀文章 Front Matter 添加参数 id 并确保其唯一性（例如 “id: yuque”, “id: 01”）
+  # 你需要在语雀文章 Front Matter 添加参数 id 并确保其唯一性（例如 "id: yuque", "id: 01"）
   yuque: false
 
 # Related Articles
@@ -426,7 +426,7 @@ crisp:
 # --------------------------------------
 footer:
   owner:
-    enable: true
+    enable: false # 隐藏版权信息
     since: 2020
   custom_text:
   runtime:
@@ -440,22 +440,6 @@ footer:
   # https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr
   bdageitem:
     enable: false
-    list:
-      - link: https://hexo.io/ #徽标指向网站链接
-        shields: https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg #徽标API
-        message: 博客框架为Hexo_v5.4.0 #徽标提示语
-      - link: https://blog.anheyu.com/
-        shields: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg
-        message: 本站使用AnZhiYu主题
-      # - link: https://www.dogecloud.com/
-      #   shields: https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/CDN-多吉云-3693F3.svg
-      #   message: 本站使用多吉云为静态资源提供CDN加速
-      # - link: https://github.com/
-      #   shields: https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg
-      #   message: 本站项目由Github托管
-      # - link: http://creativecommons.org/licenses/by-nc-sa/4.0/
-      #   shields: https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg
-      #   message: 本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可
   socialBar:
     enable: false
     centerImg:
@@ -522,7 +506,7 @@ footer:
       #     - title: 版权协议
       #       link: /copyright/
   footerBar:
-    enable: true
+    enable: false # 隐藏底部栏
     authorLink: /
     cc:
       enable: false
@@ -783,7 +767,7 @@ subtitle:
 
 # Loading Animation (加载动画)
 preloader:
-  enable: true
+  enable: false
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
@@ -791,7 +775,7 @@ preloader:
   source: 3
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg # 自定加载动画义头像
+  avatar: # 自定加载动画义头像 - 已移除默认头像
 
 # aside (侧边栏)
 # --------------------------------------
@@ -932,9 +916,9 @@ darkmode:
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
 # Don't repeat 不要重複
 rightside_item_order:
-  enable: false
-  hide: # readmode,translate,darkmode,hideAside
-  show: # toc,chat,comment
+  enable: true # 启用配置
+  hide: readmode,translate,darkmode,hideAside,toc,chat,comment # 隐藏所有右侧边栏按钮
+  show: # 不显示任何按钮
 
 # Lightbox (图片大图查看模式)
 # --------------------------------------
@@ -975,7 +959,7 @@ note:
   light_bg_offset: 0
 
 icons:
-  ali_iconfont_js: # 阿里图标symbol 引用链接，主题会进行加载 symbol 引用
+  ali_iconfont_js: //at.alicdn.com/t/c/font_4941425_70pmh36pixj.js # 阿里图标symbol 引用链接，主题会进行加载 symbol 引用
   fontawesome: false #是否启用fontawesome6图标
   fontawesome_animation_css: #fontawesome_animation 如果有就会加载，示例值：https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css
 
@@ -1108,7 +1092,7 @@ LA:
 
 # 标签卖萌
 diytitle:
-  enable: true
+  enable: false
   leaveTitle: w(ﾟДﾟ)w 不要走！再看看嘛！
   backTitle: ♪(^∇^*)欢迎肥来！
 
@@ -1127,12 +1111,12 @@ comment_barrage_config:
 # 左下角音乐配置项
 # https://github.com/metowolf/MetingJS
 nav_music:
-  enable: true
+  enable: true  # 启用音乐功能
   console_widescreen_music: false # 宽屏状态控制台显示音乐而不是标签 enable为true 控制台依然会显示
-  id: 8152976493
-  server: netease
+  id: 3zkxb3yizpz0a7  # 你的酷狗歌单ID
+  server: kugou
   volume: 0.7 # 默认音量
-  all_playlist: https://y.qq.com/n/ryqq/playlist/8802438608
+  all_playlist: https://www.kugou.com/songlist/gcid_3zkxb3yizpz0a7/  # 你的酷狗歌单链接
 
 # 路径为 /music 的音乐页面默认加载的歌单 1. nav_music 2. custom
 music_page_default: nav_music
@@ -1144,10 +1128,10 @@ visitorMail:
 
 # ptool 文章底部工具
 ptool:
-  enable: true
-  share_mobile: true
-  share_weibo: true
-  share_copyurl: true
+  enable: false
+  share_mobile: false
+  share_weibo: false
+  share_copyurl: false
   categories: false # 是否显示分类
   mode: # 运营模式与责任，不配置不显示
 
@@ -1239,7 +1223,7 @@ dynamicEffect:
 inject:
   head:
     # 自定义css
-    # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
+    - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
 
   bottom:
     # 自定义js
@@ -1324,10 +1308,18 @@ CDN:
     # pace_js:
     # pace_default_css:
     # countup_js:
-    # gsap_js:
+    gsap_js:
     # busuanzi:
     # rightmenu:
     # waterfall:
     # ali_iconfont_css:
     # accesskey_js:
-    # colorthief:
+
+# About page config
+about:
+  enable: true
+  info_enable: true # 是否开启个人信息 (Let's assume this should be true)
+  content_type: 1 # 0: 只显示md文件内容, 1: 只显示配置文件内容, 2: 双栏，左边md右边配置（只能选择，不能同时展示）
+  # Add other potential about settings if they were there before, or leave as is.
+  # extra_info: ... (Keep if exists)
+  # contentinfo: ... (Keep if exists)

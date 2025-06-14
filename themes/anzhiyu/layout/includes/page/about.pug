@@ -47,15 +47,6 @@ if site.data.about
               |  
               span(data-show)= word[word.length - 1]
       
-      .hello-about
-        .cursor(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
-        .shapes
-          .shape.shape-1(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
-          .shape.shape-2(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
-          .shape.shape-3(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
-        .content
-          h1=helloAbout
-      
       .author-content
         .author-content-item.skills
           .card-content
@@ -73,20 +64,35 @@ if site.data.about
                         .skill-name
                           span=item.name 
                   .etc ...
-        .author-content-item.careers
-          .card-content
-            .author-content-item-tips=careers.tips
-            span.author-content-item-title=careers.title
-            .careers-group
-              if crrList
-                each career in crrList
-                  .career-item
-                    .circle(style=`background:${career.color ? career.color : "#357ef5"}`)
-                    .name=career.desc
-              else
-                .careers-none
-            if careers.img
-              img.author-content-img.no-lightbox(alt=careers.tips, src=url_for(careers.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
+        .author-content-item-group.column.careersAndInfo
+          .author-content-item.careers
+            .card-content
+              .author-content-item-tips=careers.tips
+              span.author-content-item-title=careers.title
+              .careers-group
+                if crrList
+                  each career in crrList
+                    .career-item
+                      .circle(style=`background:${career.color ? career.color : "#357ef5"}`)
+                      .name=career.desc
+                else
+                  .careers-none
+              if careers.img
+                img.author-content-img.no-lightbox(alt=careers.tips, src=url_for(careers.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
+          .author-content-item.selfInfo
+            - let { selfInfoTips1, selfInfoContentYear, selfInfoTips2, selfInfoContent2, selfInfoTips3, selfInfoContent3 } = item.selfInfo
+            div
+              span.selfInfo-title=selfInfoTips1
+              |  
+              span.selfInfo-content#selfInfo-content-year(style='color:#43a6c6')=selfInfoContentYear
+            div
+              span.selfInfo-title=selfInfoTips2
+              |  
+              span.selfInfo-content(style='color:#c69043')=selfInfoContent2
+            div
+              span.selfInfo-title=selfInfoTips3
+              |  
+              span.selfInfo-content(style='color:#b04fe6')=selfInfoContent3
       
       .author-content
         if theme.LA.enable
@@ -106,51 +112,31 @@ if site.data.about
                   i.anzhiyufont.anzhiyu-icon-arrow-circle-right
                   |  
                   span.banner-button-text=text
-        .author-content-item-group.column.mapAndInfo
-          - let mapBackground = item.map.background
-          - let mapBackgroundDark = item.map.backgroundDark
-          style.
-            .author-content-item.map {
-              background-image: url(#{mapBackground});
-            }
-            [data-theme='dark'] .author-content-item.map {
-              background-image: url(#{mapBackgroundDark});
-            }
-          .author-content-item.map.single
-            - let mapTitle = item.map.title
-            - let mapStrengthenTitle = item.map.StrengthenTitle
-            span.map-title=mapTitle
-              b=mapStrengthenTitle
-          .author-content-item.selfInfo.single
-            - let { selfInfoTips1, selfInfoContentYear, selfInfoTips2, selfInfoContent2, selfInfoTips3, selfInfoContent3 } = item.selfInfo
-            div
-              span.selfInfo-title=selfInfoTips1
-              |  
-              span.selfInfo-content#selfInfo-content-year(style='color:#43a6c6')=selfInfoContentYear
-            div
-              span.selfInfo-title=selfInfoTips2
-              |  
-              span.selfInfo-content(style='color:#c69043')=selfInfoContent2
-            div
-              span.selfInfo-title=selfInfoTips3
-              |  
-              span.selfInfo-content(style='color:#b04fe6')=selfInfoContent3
-      
-      .author-content
         .author-content-item.personalities
           - let {author_name, personality_type, photo_url, personality_img, name_url, personality_type_color} = item.personalities
           .author-content-item-tips 性格
-          span.author-content-item-title= author_name
-          .title2(style=`color:${personality_type_color ? personality_type_color : "#ac899c"}`)= personality_type
+          span.author-content-item-title INTJ-A
+          .title2(style=`color:${personality_type_color ? personality_type_color : "#ac899c"}`) 架构师型人格
           .post-tips
-            | 在 
-            a(href='https://www.16personalities.com/', target='_blank', rel='noopener nofollow') 16personalities
-            |  了解更多关于 
-            a(target='_blank', rel='noopener external nofollow', href= name_url)= author_name
-          .image
-            img.no-lightbox(src=url_for(personality_img), alt='人格')
-        .author-content-item.myphoto
-          img.author-content-img.no-lightbox(alt='自拍', src=url_for(photo_url))
+            a(href='https://www.16personalities.com/ch/intj-%E4%BA%BA%E6%A0%BC', target='_blank', rel='noopener nofollow') 了解更多关于 INTJ-A
+          .celebrity.tw-flex.tw-h-full.tw-flex-col.tw-items-center
+            .celebrity__avatar(class="tw-mb-8 medium:tw-mb-10 tw-mt-10")
+              img.no-lightbox(style="width: 240px; height: 240px; max-width: 100%;" src=url_for(personality_img || '/img/personality/elon_musk.svg') onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="16Personalities - Elon Musk的头像")
+        .author-content-item.clifton-strengths
+          - let cliftonData = item.clifton_strengths
+          .author-content-item-tips= cliftonData.tips
+          .gene-info-container
+            each gene, index in cliftonData.genes
+              .gene-info(class=(index === 0 ? 'active' : ''), data-index=index, style=(index === 0 ? '' : 'display: none;'))
+                span.author-content-item-title= gene.module
+                .title2(style=`color: ${gene.color}`)= gene.name
+                .post-tips= `"${gene.description}"`
+          .gene-visual
+            .gene-blueprint#gene-blueprint
+              - for (var i = 0; i < 20; i++)
+                .bar
+                  .dot1
+                  .dot2
       
       .author-content
         .author-content-item.maxim
@@ -172,7 +158,7 @@ if site.data.about
             i.anzhiyufont.anzhiyu-icon-dice-d20
 
       .author-content
-        - let {game_tips, game_title, game_uid, game_bg} = item.game
+        - let {game_tips, game_title, game_uid, game_bg, heroes} = item.game
         .author-content-item.game-yuanshen(style=`background: url(${game_bg}) top / cover no-repeat;`)
           .card-content
             .author-content-item-tips=game_tips
@@ -180,6 +166,12 @@ if site.data.about
             .content-bottom
               .icon-group
                 .loading-bar(role='presentation', aria-hidden='true' style=`${game_title != "原神" ? "display: none": ""}`)
+                if heroes && heroes.length > 0
+                  .heroes-list
+                    each hero, index in heroes
+                      .hero-item(data-name=hero.name)
+                        img.hero-avatar(src=hero.avatar alt=hero.name)
+                        .hero-tooltip=`常玩英雄：${hero.name}`
               .tips.game-yuanshen-uid=game_uid
         .author-content-item.comic-content
           .card-content
@@ -209,7 +201,7 @@ if site.data.about
             .content-bottom
               .tips=`跟 ${aboutName} 一起欣赏更多音乐`
             .banner-button-group
-              a.banner-button(onclick=`pjax.loadUrl("${music_link}")`)
+              a.banner-button(href=music_link, target="_blank", rel="noopener noreferrer")
                 i.anzhiyufont.anzhiyu-icon-arrow-circle-right
                 |  
                 span.banner-button-text 更多推荐
@@ -289,6 +281,103 @@ if site.data.about
     script(src=url_for(theme.asset.countup_js))
     - const ck = theme.LA.ck
     script(defer).
+      // 基因轮播功能
+      function initGeneCarousel() {
+        const cliftonData = !{JSON.stringify(aboutData[0].clifton_strengths)};
+        if (!cliftonData || !cliftonData.genes || cliftonData.genes.length === 0) {
+          console.log('没有基因数据，无法初始化DNA动画。');
+          return;
+        }
+
+        const geneData = cliftonData.genes;
+        let currentActiveBar = 0;
+        let colorRotationInterval;
+
+        function updateDisplay() {
+          const bars = document.querySelectorAll('#gene-blueprint .bar');
+          if (bars.length === 0) return;
+
+          const currentGene = geneData[currentActiveBar];
+          
+          // 更新文本信息
+          const nameElement = document.getElementById('current-gene-name');
+          const descElement = document.getElementById('current-gene-description');
+
+          if (nameElement) {
+            nameElement.classList.remove('fade-in');
+            nameElement.style.color = currentGene.color;
+            nameElement.textContent = currentGene.name;
+            setTimeout(() => nameElement.classList.add('fade-in'), 50);
+          }
+
+          if (descElement) {
+            descElement.classList.remove('fade-in');
+            descElement.textContent = `"${currentGene.description}"`;
+            setTimeout(() => descElement.classList.add('fade-in'), 50);
+          }
+
+          // 更新链条颜色
+          bars.forEach((bar, index) => {
+            const barElement = bar;
+            const dot1 = bar.querySelector('.dot1');
+            const dot2 = bar.querySelector('.dot2');
+
+            // 默认颜色
+            const defaultColor = '#6c757d'; // 深空灰
+
+            if (index === currentActiveBar) {
+              const activeColor = currentGene.color;
+              barElement.style.background = activeColor;
+              barElement.style.boxShadow = `0 0 8px ${activeColor}, 0 0 16px ${activeColor}`;
+              if (dot1) {
+                dot1.style.background = activeColor;
+                dot1.style.boxShadow = `0 0 12px ${activeColor}, 0 0 24px ${activeColor}`;
+              }
+              if (dot2) {
+                dot2.style.background = activeColor;
+                dot2.style.boxShadow = `0 0 12px ${activeColor}, 0 0 24px ${activeColor}`;
+              }
+              barElement.style.setProperty('--active-color', activeColor);
+              barElement.classList.add('active-bar');
+            } else {
+              barElement.style.background = defaultColor;
+              barElement.style.boxShadow = `0 0 4px ${defaultColor}80`; // 50%透明度
+              if (dot1) {
+                dot1.style.background = defaultColor;
+                dot1.style.boxShadow = `0 0 8px ${defaultColor}99, 0 0 16px ${defaultColor}4d`; // 60% 和 30% 透明度
+              }
+              if (dot2) {
+                dot2.style.background = defaultColor;
+                dot2.style.boxShadow = `0 0 8px ${defaultColor}99, 0 0 16px ${defaultColor}4d`;
+              }
+              barElement.classList.remove('active-bar');
+            }
+          });
+        }
+
+        function startColorRotation() {
+          if (colorRotationInterval) clearInterval(colorRotationInterval);
+          colorRotationInterval = setInterval(() => {
+            currentActiveBar = (currentActiveBar + 1) % geneData.length;
+            updateDisplay();
+          }, 3500); // 切换频率和之前保持一致
+        }
+        
+        // 初始化
+        updateDisplay();
+        startColorRotation();
+        
+        // 页面可见性变化时控制播放
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            clearInterval(colorRotationInterval);
+          } else {
+            startColorRotation();
+          }
+        });
+      }
+      
+    script(defer).
       function initAboutPage() {
         fetch("https://v6-widget.51.la/v6/#{ck}/quote.js")
           .then(res => res.text())
@@ -361,7 +450,7 @@ if site.data.about
               suffix: "",
             });
 
-            let selfInfoContentYearElement = document.querySelector(".author-content-item.selfInfo.single");
+            let selfInfoContentYearElement = document.querySelector(".author-content-item.selfInfo");
             function selfInfoContentYearUp() {
               if (!selfInfoContentYearElement) return;
 
@@ -406,25 +495,79 @@ if site.data.about
         document.addEventListener("pjax:send", function () {
           pursuitInterval && clearInterval(pursuitInterval);
         });
-
-        var helloAboutEl = document.querySelector(".hello-about");
-        helloAboutEl.addEventListener("mousemove", evt => {
-          const mouseX = evt.offsetX;
-          const mouseY = evt.offsetY;
-          gsap.set(".cursor", {
-            x: mouseX,
-            y: mouseY,
-          });
-
-          gsap.to(".shape", {
-            x: mouseX,
-            y: mouseY,
-            stagger: -0.1,
-          });
-        });
+        
+        // 初始化基因轮播
+        initGeneCarousel();
       }
       if (typeof gsap === "object") {
         initAboutPage()
       } else {
         getScript("!{url_for(theme.asset.gsap_js)}").then(initAboutPage);
       }
+
+    script.
+      const initCliftonStrengthsAnimation = (genes) => {
+        const blueprint = document.getElementById('gene-blueprint');
+        const geneInfoItems = document.querySelectorAll('.gene-info');
+
+        if (!blueprint || !geneInfoItems.length || !genes || !genes.length) return;
+
+        const bars = blueprint.querySelectorAll('.bar');
+        let currentIndex = 0;
+        let geneIntervalId;
+
+        const updateDisplay = (index) => {
+          const gene = genes[index];
+
+          // Hide all text blocks and show the active one
+          geneInfoItems.forEach((item, i) => {
+            item.style.display = i === index ? 'block' : 'none';
+          });
+
+          // Update DNA animation colors
+          bars.forEach((bar, i) => {
+            const dot1 = bar.querySelector('.dot1');
+            const dot2 = bar.querySelector('.dot2');
+            const isActive = i === index;
+
+            bar.style.backgroundColor = isActive ? gene.color : '#6c757d';
+            bar.style.boxShadow = isActive ? `0 0 5px ${gene.color}, 0 0 10px ${gene.color}` : 'none';
+            if (dot1) dot1.style.backgroundColor = isActive ? gene.color : '#6c757d';
+            if (dot2) dot2.style.backgroundColor = isActive ? gene.color : '#6c757d';
+          });
+        };
+
+        const startAutoSwitch = () => {
+          if (geneIntervalId) clearInterval(geneIntervalId);
+          geneIntervalId = setInterval(() => {
+            currentIndex = (currentIndex + 1) % genes.length;
+            updateDisplay(currentIndex);
+          }, 3500);
+        };
+
+        updateDisplay(0); // Set initial state
+        startAutoSwitch();
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            clearInterval(geneIntervalId);
+          } else {
+            startAutoSwitch();
+          }
+        });
+      };
+
+      const runAboutScripts = () => {
+        const genesData = !{JSON.stringify(item.clifton_strengths.genes || [])};
+        // Call the old init function if it exists, for other animations
+        if (typeof initAboutPage === 'function') {
+          // We pass an empty array to prevent the old faulty logic from running
+          initAboutPage([]); 
+        }
+        // Call our new, reliable animation script
+        initCliftonStrengthsAnimation(genesData);
+      };
+
+      // Run scripts on initial page load and after pjax navigation
+      document.addEventListener("DOMContentLoaded", runAboutScripts);
+      document.addEventListener("pjax:complete", runAboutScripts);

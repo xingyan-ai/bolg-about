@@ -2,6 +2,7 @@
 title: 音乐
 date: 2024-01-01 00:00:00
 type: music
+layout: "music"
 aside: false
 top_img: https://bu.dusays.com/2023/08/13/64d8c2e32afbe.jpg
 ---
