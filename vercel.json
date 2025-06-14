@@ -3,7 +3,7 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "about.xingyan.me" }],
-      "destination": "/$1"
+      "destination": "/about/$1"
     },
     {
       "source": "/(.*)",
