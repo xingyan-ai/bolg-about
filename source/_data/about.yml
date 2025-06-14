@@ -214,7 +214,7 @@
   music:
     music_tips: 音乐偏好
     music_title: 民谣、华语流行 # 从 @md.mdc 获取
-    music_link: /music/ # 默认音乐页面链接
+    music_link: https://music.xingyan.me # 默认音乐页面链接
     # 音乐相关的背景图和网易云音乐歌单
     music_bg: /img/music/music-bg.jpg # 音乐背景图 - 本地图片
     netease_playlist_id: 2829816518 # 网易云音乐歌单ID，民谣/华语流行精选
