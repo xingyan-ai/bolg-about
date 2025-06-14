@@ -10,7 +10,7 @@
 
 - var pageKeywords
 - if (page.keywords) pageKeywords = Array.isArray(page.keywords) ? (page.keywords).join(',') :  ([]).join(',') || page.keywords
-- else if (page.tags && page.tags.data && page.tags.data.length) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
+- else if (page.tags && page.tags.length) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
 - else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
@@ -56,11 +56,6 @@ if (theme.pwa && theme.pwa.enable)
 //- animation依赖
 if (theme.icons && theme.icons.fontawesome_animation_css)
   link(rel="stylesheet", href=url_for(theme.icons.fontawesome_animation_css))
-
-// Google Fonts - Montserrat
-link(rel="preconnect", href="https://fonts.googleapis.com")
-link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap", rel="stylesheet")
 
 //- main css
 link(rel='stylesheet', href=url_for(theme.asset.main_css))

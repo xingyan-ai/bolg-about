@@ -12,7 +12,7 @@ block content
         if (theme.post_meta.post.categories && page.categories && page.categories.data.length > 0)
           each item, index in page.categories.data
             a(href=url_for(item.path) itemprop="url").post-meta-categories #[=item.name]
-        if (theme.post_meta.page.tags && page.tags && page.tags.data && page.tags.data.length > 0)
+        if (theme.post_meta.page.tags)
           each item, index in page.tags.data
             a(href=url_for(item.path) tabindex="-1" itemprop="url")=item.name
         h1#CrawlerTitle(itemprop="name headline")= page.title || _p('no_title')

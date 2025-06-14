@@ -49,8 +49,9 @@ div
   else if theme.local_search.enable
     script(src=url_for(theme.asset.local_search))
 
-
-
+  //- colorthief
+  if theme.mainTone.mode === "colorthief"
+    script(src=url_for(theme.asset.colorthief))
 
   .js-pjax
     if theme.peoplecanvas.enable && is_home()
@@ -129,14 +130,3 @@ div
 
   if is_current("/") && theme.greetingBox.enable
     #greetingBox
-
-// 自定义JS：强制隐藏加载动画
-script.
-  document.addEventListener('DOMContentLoaded', function() {
-    const loadingElement = document.querySelector('.loading-bg');
-    if (loadingElement) {
-      loadingElement.style.display = 'none';
-      // 如果希望更彻底，确保没有任何内联样式覆盖，可以再加上 !important
-      // loadingElement.style.setProperty('display', 'none', 'important');
-    }
-  });

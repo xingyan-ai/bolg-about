@@ -16,7 +16,7 @@
             a(href=url_for(item.path) itemprop="url").post-meta-categories #[=item.name]
             if (index < page.categories.data.length - 1)
               i.anzhiyufont.anzhiyu-icon-angle-right.post-meta-separator
-      if (theme.post_meta.page.tags && page.tags && page.tags.data && page.tags.data.length > 0)
+      if (theme.post_meta.page.tags)
         span.article-meta.tags
           each item, index in page.tags.data
             a(href=url_for(item.path) tabindex="-1" itemprop="url").article-meta__tags 

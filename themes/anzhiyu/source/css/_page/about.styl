@@ -9,26 +9,6 @@ body[data-type='about'] #page .page-title {
   display: none;
 }
 
-body[data-type='about'] #nav {
-  display: none !important;
-}
-
-body[data-type='about'] #page-header {
-  position: relative !important;
-  height: auto !important;
-  background: transparent !important;
-}
-
-body[data-type='about'] #rightside {
-  display: none !important;
-}
-
-body[data-type='about'] p.p.center.logo.large {
-  font-size: 2rem !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.05em;
-}
-
 body[data-type='about'] .page #footer-wrap {
   opacity: 1;
   overflow: visible;
@@ -137,7 +117,7 @@ body[data-type='about'] #web_bg {
   flex-direction: column;
   justify-content: center;
   color: var(--anzhiyu-white);
-  background: linear-gradient(120deg, #4f46e5 0, #06b6d4 100%);
+  background: linear-gradient(120deg, #5b27ff 0, #00d4ff 100%);
   background-size: 200%;
   animation: gradient 15s ease infinite;
   width: 59%;
@@ -387,386 +367,49 @@ body[data-type='about'] #web_bg {
 
 .author-content-item.personalities {
   width: 59%;
-  min-height: 250px; 
-  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* INTJ 悬停效果 - 淡紫色背景，不移动整个模块 */
-.author-content-item.personalities:hover {
-  background: linear-gradient(135deg, #8B7BD8 0%, #A594E8 50%, #C8B9F0 100%);
-  box-shadow: 0 20px 40px rgba(139, 123, 216, 0.3);
-}
-
-.author-content-item.personalities:hover .author-content-item-tips,
-.author-content-item.personalities:hover .author-content-item-title,
-.author-content-item.personalities:hover .title2,
-.author-content-item.personalities:hover .post-tips,
-.author-content-item.personalities:hover .post-tips a {
-  color: var(--anzhiyu-white) !important;
-  transition: color 0.15s ease;
-}
-
-/* 新的16personalities风格人物头像样式 */
-.author-content-item.personalities .celebrity {
+.author-content-item.personalities .image {
   position: absolute;
   right: 30px;
-  top: 30px;
+  top: 10px;
   width: 220px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 2s cubic-bezier(0.13, 0.45, 0.21, 1.02);
 }
 
-.author-content-item.personalities .celebrity__avatar {
-  margin-bottom: 2.5rem;
-  transition: transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.author-content-item.personalities .celebrity__avatar img {
-  width: 140px;
-  height: 140px;
-  max-width: 100%;
+.author-content-item.personalities .image img {
   display: block;
-  margin: 0 auto;
-  transition: filter 1.0s ease, transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin: 0 auto 20px;
+  max-width: 100%;
+  transition: filter 375ms ease-in 0.2s;
 }
 
-.author-content-item.personalities .celebrity__name {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-  text-align: center;
-  color: var(--anzhiyu-fontcolor);
-  opacity: 0.8;
+.author-content-item.personalities:hover .image {
+  transform: rotate(-10deg);
 }
 
-/* Hover效果 */
-.author-content-item.personalities:hover .celebrity {
-  transform: rotate(-8deg) scale(1.03);
-}
-
-.author-content-item.personalities:hover .celebrity__avatar img {
-  transform: scale(1.08);
-  filter: brightness(1.15) saturate(1.1);
-}
-
-/* 响应式样式 */
-@media screen and (min-width: 768px) and (max-width: 1200px) {
-  .author-content-item.personalities .celebrity {
-    width: 180px;
-  }
-  
-  .author-content-item.personalities .celebrity__avatar img {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .author-content-item.personalities .celebrity {
-    width: 125px;
-    right: 20px;
-  }
-  
-  .author-content-item.personalities .celebrity__avatar {
-    margin-bottom: 1rem;
-  }
-  
-  .author-content-item.personalities .celebrity__avatar img {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .author-content-item.personalities .celebrity__name {
-    font-size: 0.875rem;
-  }
-}
-
-.author-content-item.clifton-strengths {
-  min-height: 200px;
+.author-content-item.myphoto {
+  height: 60%;
+  min-height: 240px;
   position: relative;
   overflow: hidden;
   width: 39%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  
-  .title2 {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--anzhiyu-main);
-    transition: all 0.5s ease-in-out;
-    z-index: 10;
-  }
-  
-  .post-tips {
-    z-index: 10;
-  }
-  
-  // 基因可视化区域
-  .gene-visual {
-    position: absolute;
-    top: 25%;
-    right: 30px;
-    transform: translateY(-50%);
-    width: 120px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  // 新的DNA动画容器
-  .gene-blueprint {
-    width: 470px;
-    height: 100px;
-    position: relative;
-    transform: rotate(90deg) scale(0.4);
-    transform-origin: center;
-    transform-style: preserve-3d;
-  }
-  
-  .gene-blueprint * {
-    transform-style: preserve-3d;
-  }
-
-  // DNA链条
-  .gene-blueprint .bar {
-    width: 2px;
-    height: 100%;
-    position: absolute;
-    background: #6c757d; // 默认深空灰色
-    top: 0;
-    transform: rotateX(0);
-    animation: grow 8s linear infinite;
-    will-change: transform;
-    box-shadow: 0 0 4px rgba(108, 117, 125, 0.5);
-  }
-
-  // 为每个链条设置不同大小的端点
-  .gene-blueprint .bar:nth-of-type(1) .dot1,
-  .gene-blueprint .bar:nth-of-type(1) .dot2 {
-    width: calc(10px + 1px); height: calc(10px + 1px);
-  }
-  .gene-blueprint .bar:nth-of-type(2) .dot1,
-  .gene-blueprint .bar:nth-of-type(2) .dot2 {
-    width: calc(10px + 2px); height: calc(10px + 2px);
-  }
-  .gene-blueprint .bar:nth-of-type(3) .dot1,
-  .gene-blueprint .bar:nth-of-type(3) .dot2 {
-    width: calc(10px + 3px); height: calc(10px + 3px);
-  }
-  .gene-blueprint .bar:nth-of-type(4) .dot1,
-  .gene-blueprint .bar:nth-of-type(4) .dot2 {
-    width: calc(10px + 4px); height: calc(10px + 4px);
-  }
-  .gene-blueprint .bar:nth-of-type(5) .dot1,
-  .gene-blueprint .bar:nth-of-type(5) .dot2 {
-    width: calc(10px + 5px); height: calc(10px + 5px);
-  }
-  .gene-blueprint .bar:nth-of-type(6) .dot1,
-  .gene-blueprint .bar:nth-of-type(6) .dot2 {
-    width: calc(10px + 6px); height: calc(10px + 6px);
-  }
-  .gene-blueprint .bar:nth-of-type(7) .dot1,
-  .gene-blueprint .bar:nth-of-type(7) .dot2 {
-    width: calc(10px + 7px); height: calc(10px + 7px);
-  }
-  .gene-blueprint .bar:nth-of-type(8) .dot1,
-  .gene-blueprint .bar:nth-of-type(8) .dot2 {
-    width: calc(10px + 8px); height: calc(10px + 8px);
-  }
-  .gene-blueprint .bar:nth-of-type(9) .dot1,
-  .gene-blueprint .bar:nth-of-type(9) .dot2 {
-    width: calc(10px + 9px); height: calc(10px + 9px);
-  }
-  .gene-blueprint .bar:nth-of-type(10) .dot1,
-  .gene-blueprint .bar:nth-of-type(10) .dot2 {
-    width: calc(10px + 10px); height: calc(10px + 10px);
-  }
-  .gene-blueprint .bar:nth-of-type(11) .dot1,
-  .gene-blueprint .bar:nth-of-type(11) .dot2 {
-    width: calc(30px - 11px); height: calc(30px - 11px);
-  }
-  .gene-blueprint .bar:nth-of-type(12) .dot1,
-  .gene-blueprint .bar:nth-of-type(12) .dot2 {
-    width: calc(30px - 12px); height: calc(30px - 12px);
-  }
-  .gene-blueprint .bar:nth-of-type(13) .dot1,
-  .gene-blueprint .bar:nth-of-type(13) .dot2 {
-    width: calc(30px - 13px); height: calc(30px - 13px);
-  }
-  .gene-blueprint .bar:nth-of-type(14) .dot1,
-  .gene-blueprint .bar:nth-of-type(14) .dot2 {
-    width: calc(30px - 14px); height: calc(30px - 14px);
-  }
-  .gene-blueprint .bar:nth-of-type(15) .dot1,
-  .gene-blueprint .bar:nth-of-type(15) .dot2 {
-    width: calc(30px - 15px); height: calc(30px - 15px);
-  }
-  .gene-blueprint .bar:nth-of-type(16) .dot1,
-  .gene-blueprint .bar:nth-of-type(16) .dot2 {
-    width: calc(30px - 16px); height: calc(30px - 16px);
-  }
-  .gene-blueprint .bar:nth-of-type(17) .dot1,
-  .gene-blueprint .bar:nth-of-type(17) .dot2 {
-    width: calc(30px - 17px); height: calc(30px - 17px);
-  }
-  .gene-blueprint .bar:nth-of-type(18) .dot1,
-  .gene-blueprint .bar:nth-of-type(18) .dot2 {
-    width: calc(30px - 18px); height: calc(30px - 18px);
-  }
-  .gene-blueprint .bar:nth-of-type(19) .dot1,
-  .gene-blueprint .bar:nth-of-type(19) .dot2 {
-    width: calc(30px - 19px); height: calc(30px - 19px);
-  }
-  .gene-blueprint .bar:nth-of-type(20) .dot1,
-  .gene-blueprint .bar:nth-of-type(20) .dot2 {
-    width: calc(30px - 20px); height: calc(30px - 20px);
-  }
-  
-  // 设置每个链条的位置和动画延迟
-  .gene-blueprint .bar:nth-of-type(1) { left: -15px; animation-delay: -0.4s; }
-  .gene-blueprint .bar:nth-of-type(1) .dot1, .gene-blueprint .bar:nth-of-type(1) .dot2, .gene-blueprint .bar:nth-of-type(1):after, .gene-blueprint .bar:nth-of-type(1):before { animation-delay: -0.4s; }
-  .gene-blueprint .bar:nth-of-type(2) { left: 10px; animation-delay: -0.8s; }
-  .gene-blueprint .bar:nth-of-type(2) .dot1, .gene-blueprint .bar:nth-of-type(2) .dot2, .gene-blueprint .bar:nth-of-type(2):after, .gene-blueprint .bar:nth-of-type(2):before { animation-delay: -0.8s; }
-  .gene-blueprint .bar:nth-of-type(3) { left: 35px; animation-delay: -1.2s; }
-  .gene-blueprint .bar:nth-of-type(3) .dot1, .gene-blueprint .bar:nth-of-type(3) .dot2, .gene-blueprint .bar:nth-of-type(3):after, .gene-blueprint .bar:nth-of-type(3):before { animation-delay: -1.2s; }
-  .gene-blueprint .bar:nth-of-type(4) { left: 60px; animation-delay: -1.6s; }
-  .gene-blueprint .bar:nth-of-type(4) .dot1, .gene-blueprint .bar:nth-of-type(4) .dot2, .gene-blueprint .bar:nth-of-type(4):after, .gene-blueprint .bar:nth-of-type(4):before { animation-delay: -1.6s; }
-  .gene-blueprint .bar:nth-of-type(5) { left: 85px; animation-delay: -2.0s; }
-  .gene-blueprint .bar:nth-of-type(5) .dot1, .gene-blueprint .bar:nth-of-type(5) .dot2, .gene-blueprint .bar:nth-of-type(5):after, .gene-blueprint .bar:nth-of-type(5):before { animation-delay: -2.0s; }
-  .gene-blueprint .bar:nth-of-type(6) { left: 110px; animation-delay: -2.4s; }
-  .gene-blueprint .bar:nth-of-type(6) .dot1, .gene-blueprint .bar:nth-of-type(6) .dot2, .gene-blueprint .bar:nth-of-type(6):after, .gene-blueprint .bar:nth-of-type(6):before { animation-delay: -2.4s; }
-  .gene-blueprint .bar:nth-of-type(7) { left: 135px; animation-delay: -2.8s; }
-  .gene-blueprint .bar:nth-of-type(7) .dot1, .gene-blueprint .bar:nth-of-type(7) .dot2, .gene-blueprint .bar:nth-of-type(7):after, .gene-blueprint .bar:nth-of-type(7):before { animation-delay: -2.8s; }
-  .gene-blueprint .bar:nth-of-type(8) { left: 160px; animation-delay: -3.2s; }
-  .gene-blueprint .bar:nth-of-type(8) .dot1, .gene-blueprint .bar:nth-of-type(8) .dot2, .gene-blueprint .bar:nth-of-type(8):after, .gene-blueprint .bar:nth-of-type(8):before { animation-delay: -3.2s; }
-  .gene-blueprint .bar:nth-of-type(9) { left: 185px; animation-delay: -3.6s; }
-  .gene-blueprint .bar:nth-of-type(9) .dot1, .gene-blueprint .bar:nth-of-type(9) .dot2, .gene-blueprint .bar:nth-of-type(9):after, .gene-blueprint .bar:nth-of-type(9):before { animation-delay: -3.6s; }
-  .gene-blueprint .bar:nth-of-type(10) { left: 210px; animation-delay: -4.0s; }
-  .gene-blueprint .bar:nth-of-type(10) .dot1, .gene-blueprint .bar:nth-of-type(10) .dot2, .gene-blueprint .bar:nth-of-type(10):after, .gene-blueprint .bar:nth-of-type(10):before { animation-delay: -4.0s; }
-  .gene-blueprint .bar:nth-of-type(11) { left: 235px; animation-delay: -4.4s; }
-  .gene-blueprint .bar:nth-of-type(11) .dot1, .gene-blueprint .bar:nth-of-type(11) .dot2, .gene-blueprint .bar:nth-of-type(11):after, .gene-blueprint .bar:nth-of-type(11):before { animation-delay: -4.4s; }
-  .gene-blueprint .bar:nth-of-type(12) { left: 260px; animation-delay: -4.8s; }
-  .gene-blueprint .bar:nth-of-type(12) .dot1, .gene-blueprint .bar:nth-of-type(12) .dot2, .gene-blueprint .bar:nth-of-type(12):after, .gene-blueprint .bar:nth-of-type(12):before { animation-delay: -4.8s; }
-  .gene-blueprint .bar:nth-of-type(13) { left: 285px; animation-delay: -5.2s; }
-  .gene-blueprint .bar:nth-of-type(13) .dot1, .gene-blueprint .bar:nth-of-type(13) .dot2, .gene-blueprint .bar:nth-of-type(13):after, .gene-blueprint .bar:nth-of-type(13):before { animation-delay: -5.2s; }
-  .gene-blueprint .bar:nth-of-type(14) { left: 310px; animation-delay: -5.6s; }
-  .gene-blueprint .bar:nth-of-type(14) .dot1, .gene-blueprint .bar:nth-of-type(14) .dot2, .gene-blueprint .bar:nth-of-type(14):after, .gene-blueprint .bar:nth-of-type(14):before { animation-delay: -5.6s; }
-  .gene-blueprint .bar:nth-of-type(15) { left: 335px; animation-delay: -6.0s; }
-  .gene-blueprint .bar:nth-of-type(15) .dot1, .gene-blueprint .bar:nth-of-type(15) .dot2, .gene-blueprint .bar:nth-of-type(15):after, .gene-blueprint .bar:nth-of-type(15):before { animation-delay: -6.0s; }
-  .gene-blueprint .bar:nth-of-type(16) { left: 360px; animation-delay: -6.4s; }
-  .gene-blueprint .bar:nth-of-type(16) .dot1, .gene-blueprint .bar:nth-of-type(16) .dot2, .gene-blueprint .bar:nth-of-type(16):after, .gene-blueprint .bar:nth-of-type(16):before { animation-delay: -6.4s; }
-  .gene-blueprint .bar:nth-of-type(17) { left: 385px; animation-delay: -6.8s; }
-  .gene-blueprint .bar:nth-of-type(17) .dot1, .gene-blueprint .bar:nth-of-type(17) .dot2, .gene-blueprint .bar:nth-of-type(17):after, .gene-blueprint .bar:nth-of-type(17):before { animation-delay: -6.8s; }
-  .gene-blueprint .bar:nth-of-type(18) { left: 410px; animation-delay: -7.2s; }
-  .gene-blueprint .bar:nth-of-type(18) .dot1, .gene-blueprint .bar:nth-of-type(18) .dot2, .gene-blueprint .bar:nth-of-type(18):after, .gene-blueprint .bar:nth-of-type(18):before { animation-delay: -7.2s; }
-  .gene-blueprint .bar:nth-of-type(19) { left: 435px; animation-delay: -7.6s; }
-  .gene-blueprint .bar:nth-of-type(19) .dot1, .gene-blueprint .bar:nth-of-type(19) .dot2, .gene-blueprint .bar:nth-of-type(19):after, .gene-blueprint .bar:nth-of-type(19):before { animation-delay: -7.6s; }
-  .gene-blueprint .bar:nth-of-type(20) { left: 460px; animation-delay: -8.0s; }
-  .gene-blueprint .bar:nth-of-type(20) .dot1, .gene-blueprint .bar:nth-of-type(20) .dot2, .gene-blueprint .bar:nth-of-type(20):after, .gene-blueprint .bar:nth-of-type(20):before { animation-delay: -8.0s; }
-
-  // DNA链条端点（圆点）
-  .gene-blueprint .bar .dot1,
-  .gene-blueprint .bar .dot2 {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: #6c757d; // 默认深空灰色
-    border-radius: 100%;
-    left: 50%;
-    top: -30px;
-    animation: shrink 8s linear infinite;
-    transform: translateX(-50%) rotateX(0);
-    box-shadow: 0 0 8px rgba(108,117,125,0.6), 0 0 16px rgba(108,117,125,0.3);
-  }
-
-  .gene-blueprint .bar .dot2 {
-    top: auto;
-    bottom: -30px;
-  }
-  
-  // 链条末端的小点
-  .gene-blueprint .bar:after,
-  .gene-blueprint .bar:before {
-    content: '';
-    box-shadow: 0 0 0 2px #6c757d;
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #6c757d;
-    border-radius: 0;
-    left: 50%;
-    bottom: 0;
-    animation: shrink2 8s linear infinite;
-    transform: translateX(-50%) rotateX(0) translateZ(2px);
-  }
-  
-  .gene-blueprint .bar:after {
-    bottom: auto;
-    top: 0;
-  }
-  
-  // 活跃状态的链条小点颜色
-  .gene-blueprint .bar.active-bar:after,
-  .gene-blueprint .bar.active-bar:before {
-    background: var(--active-color, #fff);
-    box-shadow: 0 0 0 2px var(--active-color, #fff);
-  }
-  
-  .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.author-content-item.myphoto img {
+  position: absolute;
+  min-width: 100%;
+  object-fit: cover;
+  transition: 0.6s;
+  animation: coverIn 2s ease-out forwards;
+  transition: transform 2s ease-out !important;
 }
 
-// 新的动画关键帧
-@keyframes grow {
-  to {
-    transform: rotateX(360deg);
-  }
-}
-@keyframes shrink {
-  100% {
-    transform: translateX(-50%) rotateX(-360deg);
-  }
-}
-@keyframes shrink2 {
-  100% {
-    transform: translateX(-50%) rotateX(-360deg) translateZ(2px);
-  }
-}
-
-/* =============================================== */
-/* END: Clifton Strengths (Gene) Animation Styles  */
-/* =============================================== */
-
-// 响应式调整
-+maxWidth768() {
-  .author-content-item.clifton-strengths {
-    width: 100% !important;
-    margin-bottom: 1rem;
-    
-    .gene-visual {
-      right: 0;
-      width: 100%;
-    }
-    
-    .gene-blueprint {
-      transform: rotate(90deg) scale(0.35);
-    }
-  }
+.author-content-item.myphoto:hover img {
+  transform: scale(1.1);
 }
 
 .author-content-item:hover .card-background-icon {
@@ -898,19 +541,6 @@ body[data-type='about'] #web_bg {
 .author-content-item.maxim .maxim-title {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
-}
-
-.author-content-item.maxim .maxim-line {
-  display: block;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.2rem;
-}
-
-.author-content-item.maxim .maxim-line:last-child {
-  margin-bottom: 0;
 }
 
 .author-content-item.buff {
@@ -984,7 +614,7 @@ body[data-type='about'] #web_bg {
 }
 
 .author-content-item.game-yuanshen::after {
-  box-shadow: 0 -69px 203px 11px transparent inset;
+  box-shadow: 0 -69px 203px 11px #575d8b inset;
   position: absolute;
   content: '';
   width: 100%;
@@ -1026,7 +656,7 @@ body[data-type='about'] #web_bg {
 }
 
 .author-content-item.comic-content .comic-item:hover {
-  width: 40%;
+  width: 46%;
 }
 
 .author-content-item.comic-content .comic-item:hover .comic-item-cover {
@@ -1083,13 +713,8 @@ body[data-type='about'] #web_bg {
 }
 
 @media screen and (max-width: 1200px) {
-  .author-content-item.personalities .celebrity {
+  .author-content-item.personalities .image {
     width: 180px;
-  }
-  
-  .author-content-item.personalities .celebrity__avatar img {
-    width: 120px;
-    height: 120px;
   }
 }
 
@@ -1144,22 +769,8 @@ body[data-type='about'] #web_bg {
     left: auto;
   }
 
-  .author-content-item.personalities .celebrity {
+  .author-content-item.personalities .image {
     width: 125px;
-    right: 20px;
-  }
-
-  .author-content-item.personalities .celebrity__avatar {
-    margin-bottom: 1rem;
-  }
-
-  .author-content-item.personalities .celebrity__avatar img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .author-content-item.personalities .celebrity__name {
-    font-size: 0.875rem;
   }
 
   .site-card-group > a {
@@ -1275,14 +886,14 @@ body[data-type='about'] #web_bg {
   white-space: nowrap;
 }
 
-/* 技能板块样式 - 恢复原版 */
+/* 技能 */
 .skills {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
   width: 50%;
-  min-height: 430px;
+  min-height: 450px;
 }
 
 .skills .skill-icon {
@@ -1342,10 +953,8 @@ body[data-type='about'] #web_bg {
   opacity: 1;
 }
 
-/* 生涯部分样式 */
 .author-content-item.careers {
-  min-height: 300px;
-  max-height: 350px;
+  min-height: 400px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: right;
@@ -1364,7 +973,6 @@ body[data-type='about'] #web_bg {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 .author-content-item.careers .career-item .circle {
@@ -1375,7 +983,23 @@ body[data-type='about'] #web_bg {
   border-radius: 50%;
 }
 
-.author-content-item.careers .career-item .name {
+.author-content-item.careers .career-item .text {
+  color: var(--anzhiyu-secondtext);
+}
+
+.author-content-item.careers .careers-item {
+  display: flex;
+  align-items: center;
+}
+
+.author-content-item.careers .careers-item .circle {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 16px;
+}
+
+.author-content-item.careers .careers-item .name {
   color: var(--anzhiyu-secondtext);
 }
 
@@ -1388,240 +1012,265 @@ body[data-type='about'] #web_bg {
   z-index: -1;
 }
 
-/* 新的垂直布局样式 */
-.author-content-item-group.column.careersAndInfo {
-  width: 49%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+:root {
+  --loadingbar-background-color: #2c2b30;
+  --loadingbar-prospect-color: #ece5d8;
 }
 
-.author-content-item-group.column.careersAndInfo .author-content-item.careers {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo {
-  width: 100%;
-  min-height: 120px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: nowrap;
-  height: auto;
-  padding: 1rem 2rem;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo div {
-  display: flex;
-  flex-direction: column;
-  margin: 0.5rem 1.2rem 0.5rem 0;
-  min-width: 60px;
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo div:first-child {
-  margin-right: 5rem;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo div:nth-child(2) {
-  margin-right: 5rem;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo div:last-child {
-  margin-right: 0;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo .selfInfo-title {
-  opacity: 0.8;
-  font-size: 12px;
-  line-height: 1;
-  margin-bottom: 8px;
-  white-space: nowrap;
-}
-
-.author-content-item-group.column.careersAndInfo .author-content-item.selfInfo .selfInfo-content {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 1;
-  white-space: nowrap;
+.loading-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 62.5px;
+  transform: translate(-25%, -50%) scale(0.5);
+  transition: all 0.5s;
+  user-select: none;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 768px) {
-  .author-content-item-group.column.careersAndInfo {
-    width: 100% !important;
-    margin-top: 1rem;
-  }
-  
-  .author-content-item-group.column.careersAndInfo .author-content-item.careers {
-    margin-bottom: 1rem;
-    min-height: 180px;
-    max-height: 220px;
-  }
-  
-  .author-content-item-group.column.careersAndInfo .author-content-item.selfInfo {
-    min-height: 120px;
-    max-height: 160px;
-  }
-  
-  .author-content-item.skills {
-    width: 100% !important;
-    min-height: 350px;
-    max-height: 400px;
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  top: 500px;
+  left: 0;
+  filter: drop-shadow(0 -500px 0 var(--loadingbar-prospect-color));
+  width: 500px;
+  height: 62.5px;
+  background: url('https://yuanshen.site/imgs/loading-bar.png') no-repeat left 100%;
+  background-size: 500px 62.5px;
+  background-position-x: 0;
+}
+
+.author-content-item.game-yuanshen:hover .loading-bar::after {
+  animation: loading-bar 3.5s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
+}
+
+@media screen and (max-width: 719px) {
+  .loading-bar .loading-bar {
+    display: none;
   }
 }
 
-/* 英雄头像列表样式 */
-.author-content-item.game-yuanshen .heroes-list {
+@media screen and (max-width: 719px) and (orientation: landscape) {
+  .loading-bar .loading-bar {
+    display: block !important;
+    transform: translate(-50%, -50%) scale(0.7) !important;
+  }
+}
+
+@supports not (filter: drop-shadow(0 0 0 #fff)) {
+  .loading-bar:before {
+    content: 'Your browser does not support the animation';
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    width: 0;
+    background-size: 500px 62.5px;
+  }
+
+  16.6% {
+  }
+
+  33.2% {
+  }
+
+  49.8% {
+  }
+
+  66.4% {
+  }
+
+  83% {
+    width: 475px;
+  }
+
+  83.1% {
+    width: 475px;
+  }
+
+  83.2% {
+    width: 475px;
+  }
+
+  83.3% {
+    width: 475px;
+  }
+
+  83.4% {
+    width: 475px;
+  }
+
+  83.5% {
+    width: 475px;
+  }
+
+  83.6% {
+    width: 475px;
+  }
+
+  83.7% {
+    width: 475px;
+  }
+
+  83.8% {
+    width: 475px;
+  }
+
+  83.9% {
+    width: 475px;
+  }
+
+  84% {
+    width: 475px;
+  }
+
+  85% {
+    width: 475px;
+  }
+
+  86% {
+    width: 475px;
+  }
+
+  87% {
+    width: 475px;
+  }
+
+  100% {
+    width: 500px;
+  }
+}
+
+.hello-about {
+  margin: 20px auto;
+  border-radius: 24px;
+  background: var(--anzhiyu-card-bg);
+  border: var(--style-border-always);
+  box-shadow: var(--anzhiyu-shadow-border);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.shapes {
+  position: relative;
+  height: 315px;
+  width: 100%;
+  background: #2128bd;
+  overflow: hidden;
+}
+
+.shape {
+  will-change: transform;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.shape.shape-1 {
+  background: #005ffe;
+  width: 650px;
+  height: 650px;
+  margin: -325px 0 0 -325px;
+}
+
+.shape.shape-2 {
+  background: #ffe5e3;
+  width: 440px;
+  height: 440px;
+  margin: -220px 0 0 -220px;
+}
+
+.shape.shape-3 {
+  background: #ffcc57;
+  width: 270px;
+  height: 270px;
+  margin: -135px 0 0 -135px;
+}
+
+.hello-about .content {
+  top: 0;
+  left: 0;
+  position: absolute;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-left: 10px;
-  z-index: 10;
-  position: relative;
+  height: 315px;
+  width: 100%;
+  background: #fff;
+  mix-blend-mode: screen;
 }
 
-.author-content-item.game-yuanshen .hero-item {
-  position: relative;
+[data-theme='dark'] .hello-about .content {
+  background: transparent;
+}
+
+[data-theme='dark'] .hello-about h1 {
+  color: var(--anzhiyu-white);
+}
+
+.hello-about h1 {
+  font-size: 200px;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1;
+  font-size: calc(0.0989119683 * 100vw + 58.5558852621px);
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 英雄头像基础样式 */
-.author-content-item.game-yuanshen .hero-avatar {
-  width: 40px;
-  height: 40px;
+@media (min-width: 419px) {
+  .hello-about h1 {
+    font-size: calc(0.0989119683 * 100vw + 58.5558852621px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hello-about {
+    margin: 20px 0 auto;
+  }
+}
+
+.cursor {
+  position: absolute;
+  background: #2128bd;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
   border-radius: 50%;
-  object-fit: cover;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 2;
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
+  z-index: 3;
 }
 
-/* 双圆环效果 */
-.author-content-item.game-yuanshen .hero-item::before,
-.author-content-item.game-yuanshen .hero-item::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 1;
-}
+if (hexo-config('LA.enable')) {
+  body: 1;
+} else {
+  #about-page {
+    .author-content-item-group.column.mapAndInfo {
+      width: 100%;
+    }
 
-/* 外圆环 */
-.author-content-item.game-yuanshen .hero-item::before {
-  width: 48px;
-  height: 48px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+    .author-content-item-group.column {
+      flex-direction: row;
+    }
 
-/* 内圆环 */
-.author-content-item.game-yuanshen .hero-item::after {
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+    .author-content-item.map {
+      width: 50%;
+    }
 
-/* 列表悬停时其他头像置灰 */
-.author-content-item.game-yuanshen .heroes-list:hover .hero-item:not(:hover) {
-  opacity: 0.3;
-  filter: grayscale(0.8);
-}
-
-/* 单个头像悬停效果 */
-.author-content-item.game-yuanshen .hero-item:hover .hero-avatar {
-  transform: scale(1.15);
-}
-
-.author-content-item.game-yuanshen .hero-item:hover::before {
-  border-color: rgba(255, 255, 255, 0.9);
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
-.author-content-item.game-yuanshen .hero-item:hover::after {
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-/* 英雄提示框样式 - 放在头像上方 */
-.author-content-item.game-yuanshen .hero-tooltip {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.85);
-  color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 100;
-  font-weight: 500;
-}
-
-.author-content-item.game-yuanshen .hero-tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid rgba(0, 0, 0, 0.85);
-}
-
-.author-content-item.game-yuanshen .hero-item:hover .hero-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(-3px);
-}
-
-/* 响应式样式 */
-@media screen and (max-width: 768px) {
-  .author-content-item.game-yuanshen .hero-avatar {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .author-content-item.game-yuanshen .hero-item::before {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .author-content-item.game-yuanshen .hero-item::after {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .author-content-item.game-yuanshen .heroes-list {
-    gap: 6px;
-  }
-  
-  .author-content-item.game-yuanshen .hero-tooltip {
-    font-size: 11px;
-    padding: 4px 8px;
-    top: -35px;
+    .author-content-item.selfInfo {
+      height: 100%;
+      width: 49%;
+    }
   }
 }
-
-
-
