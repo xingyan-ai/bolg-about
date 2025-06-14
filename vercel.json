@@ -1,9 +1,9 @@
 {
   "rewrites": [
     {
-      "source": "/",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "about.xingyan.me" }],
-      "destination": "/about/"
+      "destination": "/$1"
     },
     {
       "source": "/",
