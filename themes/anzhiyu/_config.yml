@@ -22,7 +22,7 @@ menu:
 
 # nav相关配置
 nav:
-  enable: false # 隐藏顶部导航栏
+  enable: true # 启用顶部导航栏
   travelling: false
   clock: false
   menu:
