@@ -214,3 +214,6 @@ html.hide-aside .layout > div:first-child {
     opacity: 1;
   }
 }
+
+/* 双重身份切换模块 */
+@import url('../dual_identity/dual_identity.css');

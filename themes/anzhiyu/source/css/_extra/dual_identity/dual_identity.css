@@ -1,0 +1,173 @@
+/* 双重身份切换模块样式 */
+.dual-identity-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px; /* 增加最大宽度从1200px到1400px */
+  height: 400px;
+  margin: 0 auto 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: none;
+  /* 添加白色底部背景，与下面模块保持一致 */
+  background: var(--anzhiyu-card-bg);
+  box-shadow: var(--anzhiyu-shadow-border);
+  border: var(--style-border);
+  /* 用于存储鼠标位置的CSS变量 */
+  --mouse-x: 50%;
+  --mouse-x-decimal: 0.5; /* 用于透明度计算的小数值 */
+}
+
+/* 背景图片容器 */
+.dual-identity-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 图片样式 */
+.identity-image {
+  position: absolute;
+  top: 50%; /* 垂直居中 */
+  left: 50%; /* 水平居中 */
+  width: 70%; /* 缩小到80%，避免头部被裁剪 */
+  height: 100%; /* 缩小到80% */
+  object-fit: cover;
+  object-position: center; /* 确保图片内容居中 */
+  transform: translate(-50%, -50%); /* 居中偏移 */
+  transition: all 0.4s ease-out; /* 增加过渡时间，使图片移动更平滑 */
+}
+
+/* 左侧图片（Builder真实照片）作为底层 */
+.left-image {
+  z-index: 1;
+  /* 反向移动：鼠标右移时图片左移，鼠标左移时图片右移 */
+  transform: translate(-50%, -50%) translateX(calc((var(--mouse-x) - 50%) * -0.1));
+}
+
+/* 右侧图片（Designer抽象图片）作为顶层，使用遮罩 */
+.right-image {
+  z-index: 2;
+  /* 反向移动：与底层图片同步反向移动 */
+  transform: translate(-50%, -50%) translateX(calc((var(--mouse-x) - 50%) * -0.1));
+  /*
+    核心逻辑：反转鼠标坐标计算遮罩
+    - 默认(50%)：100% - 50% = 50%，实现左真右抽
+    - 左移(20%)：100% - 20% = 80%，分割点右移，真实图片大面积露出
+  */
+  mask: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent calc(100% - var(--mouse-x) - 0.1%),
+    rgba(0, 0, 0, 0.5) calc(100% - var(--mouse-x)),
+    black calc(100% - var(--mouse-x) + 0.1%),
+    black 100%
+  );
+  -webkit-mask: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent calc(100% - var(--mouse-x) - 0.1%),
+    rgba(0, 0, 0, 0.5) calc(100% - var(--mouse-x)),
+    black calc(100% - var(--mouse-x) + 0.1%),
+    black 100%
+  );
+}
+
+/* 文字内容容器 */
+.dual-identity-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  pointer-events: none;
+}
+
+/* 文字样式 */
+.identity-text {
+  color: #555555; /* 深灰色 */
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* 浅色阴影增强可读性 */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* 增加过渡时间，使动画更平滑 */
+}
+
+.identity-title {
+  font-size: 2.2rem; /* 从3rem缩小到2.2rem */
+  font-weight: bold;
+  margin-bottom: 0.8rem; /* 稍微减少间距 */
+  line-height: 1.2;
+}
+
+.identity-subtitle {
+  font-size: 0.95rem; /* 从1.1rem缩小到0.95rem */
+  line-height: 1.4;
+  max-width: 280px; /* 稍微减少最大宽度 */
+  /* 移除固定透明度，让父元素的动态透明度生效 */
+}
+
+/* 左侧文字（Builder） */
+.left-text {
+  text-align: left;
+  /* 鼠标右移时左边图片显示更少，左边文字消失：在鼠标位置70%-90%范围内快速消失 */
+  /* 当鼠标在70%以下时文字完全可见，70%以上时快速消失到0 */
+  opacity: calc(max(0, min(1, (0.9 - var(--mouse-x-decimal)) / 0.2))) !important;
+  /* 文字反向移动：跟随图片移动方向 */
+  transform: translateX(calc((var(--mouse-x) - 50%) * -0.1));
+}
+
+/* 右侧文字（Designer） */
+.right-text {
+  text-align: right;
+  /* 鼠标左移时左边图片显示更多，右边文字消失：在鼠标位置10%-30%范围内快速消失 */
+  /* 当鼠标在30%以上时文字完全可见，30%以下时快速消失到0 */
+  opacity: calc(max(0, min(1, (var(--mouse-x-decimal) - 0.1) / 0.2))) !important;
+  /* 文字反向移动：跟随图片移动方向 */
+  transform: translateX(calc((var(--mouse-x) - 50%) * -0.1));
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .dual-identity-container {
+    height: 300px;
+  }
+  
+  .dual-identity-content {
+    padding: 0 2rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .identity-title {
+    font-size: 2rem;
+  }
+  
+  .identity-subtitle {
+    font-size: 1rem;
+    max-width: 250px;
+    text-align: center;
+  }
+  
+  .left-text,
+  .right-text {
+    text-align: center;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .dual-identity-container {
+    height: 250px;
+  }
+  
+  .identity-title {
+    font-size: 1.5rem;
+  }
+  
+  .identity-subtitle {
+    font-size: 0.9rem;
+  }
+} 

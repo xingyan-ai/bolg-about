@@ -10,19 +10,24 @@ if site.data.about
     - let careers = item.careers
     - let crrList = careers.list
     - let crrItem = careers.item
-    - let avatarSkills = item.avatarSkills
+    - let dualIdentity = item.dualIdentity
     #about-page
-      .author-box
-        if avatarSkills
-          .author-tag-left
-            each item in avatarSkills.left
-              span.author-tag=item
-        .author-img
-          img.no-lightbox(src=url_for(avatarImg) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-        if avatarSkills
-          .author-tag-right
-            each item in avatarSkills.right
-              span.author-tag=item
+      if dualIdentity && dualIdentity.enable
+        .dual-identity-container
+          .dual-identity-bg
+            img.identity-image.left-image(src=url_for(dualIdentity.leftImage) alt="Designer")
+            img.identity-image.right-image(src=url_for(dualIdentity.rightImage) alt="Coder")
+          .dual-identity-content
+            .identity-text.left-text
+              .identity-title= dualIdentity.leftText
+              .identity-subtitle= dualIdentity.leftSubtext
+            .identity-text.right-text
+              .identity-title= dualIdentity.rightText
+              .identity-subtitle= dualIdentity.rightSubtext
+      else
+        .author-box
+          .author-img
+            img.no-lightbox(src=url_for(avatarImg) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
       p.p.center.logo.large 关于我
       p.p.center.small=subtitle
       .author-content
@@ -498,7 +503,64 @@ if site.data.about
         
         // 初始化基因轮播
         initGeneCarousel();
+        
+        // 初始化双重身份切换交互
+        initDualIdentity();
       }
+      
+      // 双重身份切换交互函数
+      function initDualIdentity() {
+        const container = document.querySelector('.dual-identity-container');
+        if (!container) {
+          console.log('双重身份容器未找到');
+          return;
+        }
+        
+        console.log('双重身份模块已初始化');
+        
+        // 鼠标移动事件
+        container.addEventListener('mousemove', function(e) {
+          const rect = container.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const percentage = (x / rect.width) * 100;
+          
+          // 限制在 0-100% 范围内
+          const clampedPercentage = Math.max(0, Math.min(100, percentage));
+          const decimalValue = clampedPercentage / 100; // 转换为0-1的小数
+          
+          // 更新 CSS 变量
+          container.style.setProperty('--mouse-x', clampedPercentage + '%');
+          container.style.setProperty('--mouse-x-decimal', decimalValue);
+          
+          // 调试信息
+          console.log(`鼠标位置: ${clampedPercentage.toFixed(1)}%, 透明度值: ${decimalValue.toFixed(2)}`);
+        });
+        
+        // 鼠标离开时恢复默认状态
+        container.addEventListener('mouseleave', function() {
+          container.style.setProperty('--mouse-x', '50%');
+          container.style.setProperty('--mouse-x-decimal', 0.5);
+        });
+        
+        // 触摸设备支持
+        container.addEventListener('touchmove', function(e) {
+          e.preventDefault();
+          const rect = container.getBoundingClientRect();
+          const touch = e.touches[0];
+          const x = touch.clientX - rect.left;
+          const percentage = (x / rect.width) * 100;
+          const clampedPercentage = Math.max(0, Math.min(100, percentage));
+          const decimalValue = clampedPercentage / 100;
+          container.style.setProperty('--mouse-x', clampedPercentage + '%');
+          container.style.setProperty('--mouse-x-decimal', decimalValue);
+        });
+        
+        container.addEventListener('touchend', function() {
+          container.style.setProperty('--mouse-x', '50%');
+          container.style.setProperty('--mouse-x-decimal', 0.5);
+        });
+      }
+      
       if (typeof gsap === "object") {
         initAboutPage()
       } else {

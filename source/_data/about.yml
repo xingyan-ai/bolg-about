@@ -6,17 +6,15 @@
   avatarImg: /img/touxiang.jpg # 请替换
   # 对应截图 "Hello there!" 卡片的内容，这里使用了您 @md.mdc 的座右铭
 
-  avatarSkills:
-    left:
-      - "🤖️ 数码科技爱好者"
-      - "🔍 心有猛虎嗅蔷薇"
-      - "🏠 智能家居小能手"
-      - "🔨 设计开发一条龙"
-    right:
-      - "专修产品与增长 🤝"
-      - "脚踏实地行动派 🏃"
-      - "团队小组发动机 💪"
-      - "壮汉人狠话不多 💢"
+  # 双重身份切换模块 - 替换原来的 avatarSkills
+  dualIdentity:
+    enable: true
+    leftImage: /zuobianxin.jpg # Builder 建设者图片
+    rightImage: /youbian.png # Designer 设计师图片
+    leftText: "<Builder>"
+    rightText: "<Designer>"
+    leftSubtext: "Product architect who builds valuable and scalable systems from complex logic."
+    rightSubtext: "Product designer who creates intuitive and meaningful experiences through empathy."
 
   # 对应截图右侧的"追求"卡片
   aboutsiteTips:
