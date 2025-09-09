@@ -4,12 +4,12 @@
 
 # Site
 title: 张博贤的个人博客
-subtitle: ''
-description: ''
+subtitle: '数据/AI产品经理'
+description: '热爱数据与AI，致力于将技术转化为产品价值'
 keywords:
 author: 张博贤
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Hangzhou'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -35,7 +35,7 @@ new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
-  enable: true # Open external links in a new tab
+  enable: true # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
 filename_case: 0

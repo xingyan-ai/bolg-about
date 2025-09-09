@@ -1,6 +1,10 @@
 extends includes/layout.pug
 
 block content
+  //- 为 about 页面特殊处理，强制启用 top_img 以显示导航栏
+  if page.type === 'about'
+    - page.top_img = theme.default_top_img || '/img/404.jpg'
+  
   #page
     if top_img === false && !page.top_single
       h1.page-title= page.title

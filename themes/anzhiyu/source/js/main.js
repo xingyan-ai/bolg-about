@@ -902,6 +902,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // switch between traditional and simplified chinese
       window.translateFn.translatePage();
     },
+    friend২৪Links: () => {
+      // ... existing code ...
+    },
   };
 
   document.getElementById("rightside").addEventListener("click", function (e) {
